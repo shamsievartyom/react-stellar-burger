@@ -1,0 +1,33 @@
+.header{
+    display: grid;
+    align-items: center;
+    justify-items: center;
+    justify-content: space-between;
+    grid-template-columns: repeat(3, 1fr);
+    margin: 0 320px;
+}
+
+.button__list{
+    display: flex;
+    margin: 0;
+    padding: 0;
+    list-style-type: none;
+    gap: 8px;
+    justify-self: start;
+}
+
+.button{
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    border: white solid 1px;
+    border-radius: 50px;
+}
+
+.button_type_profile{
+    justify-self: end;
+}
+
+.navigation{
+    justify-self: start;
+}
