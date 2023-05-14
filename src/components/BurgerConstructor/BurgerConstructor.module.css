@@ -1,0 +1,11 @@
+.footer{
+    display: flex;
+    margin-bottom: 52px;
+    align-items: center;
+    justify-content: end;
+}
+
+.section{
+    max-width: 600px;
+    width: 100%;
+}

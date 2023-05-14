@@ -1,0 +1,15 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    position: relative;
+    align-items: center;
+}
+
+.counter {
+    display: flex;
+}
+
+.title{
+    min-height: 48px;
+    text-align: center;
+}
