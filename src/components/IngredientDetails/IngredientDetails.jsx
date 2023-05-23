@@ -1,10 +1,10 @@
 import React from 'react'
-import styles from './ModalIngredient.module.css'
+import styles from './IngredientDetails.module.css'
 import PropTypes from 'prop-types';
 
-function ModalIngredient({ name, image, calories, proteins, fat, carbohydrates }) {
+function IngredientDetails({ name, image, calories, proteins, fat, carbohydrates }) {
 
-    ModalIngredient.propTypes = {
+    IngredientDetails.propTypes = {
         name: PropTypes.string,
         image: PropTypes.string,
         calories: PropTypes.number,
@@ -40,4 +40,4 @@ function ModalIngredient({ name, image, calories, proteins, fat, carbohydrates }
     )
 }
 
-export default ModalIngredient
+export default IngredientDetails

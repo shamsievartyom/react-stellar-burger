@@ -3,7 +3,7 @@ import BurgerConstructorList from '../BurgerConstructorList/BurgerConstructorLis
 import { Button, Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './BurgerConstructor.module.css'
 import { data } from '../../utils/data'
-import ModalOrder from '../ModalOrder/ModalOrder'
+import OrderDetails from '../OrderDetails/OrderDetails'
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal'
 
@@ -28,7 +28,7 @@ function BurgerConstructor() {
                 <Button extraClass='ml-4 mr-4' type='primary' htmlType='button' onClick={openModal}>Оформить заказ</Button>
                 {isModalOpen &&
                     <Modal closeModal={closeModal}>
-                        <ModalOrder totalPrice={totalPrice().toString().padStart(6, '0')} />
+                        <OrderDetails totalPrice={totalPrice().toString().padStart(6, '0')} />
                     </Modal>
                 }
             </div>

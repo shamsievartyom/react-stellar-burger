@@ -1,11 +1,11 @@
 import React, { useState } from 'react'
-import styles from './ModalOrder.module.css'
+import styles from './OrderDetails.module.css'
 import picture from './../../images/done.png'
 import PropTypes from 'prop-types';
 
-function ModalOrder({ totalPrice }) {
+function OrderDetails({ totalPrice }) {
 
-    ModalOrder.propTypes = {
+    OrderDetails.propTypes = {
         totalPrice: PropTypes.number,
     };
 
@@ -20,4 +20,4 @@ function ModalOrder({ totalPrice }) {
     )
 }
 
-export default ModalOrder
+export default OrderDetails

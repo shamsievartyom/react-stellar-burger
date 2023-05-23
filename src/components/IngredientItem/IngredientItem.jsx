@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './IngredientItem.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import ModalIngredient from '../ModalIngredient/ModalIngredient'
+import IngredientDetails from '../IngredientDetails/IngredientDetails'
 import PropTypes from 'prop-types';
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal';
@@ -27,7 +27,7 @@ function IngredientItem({ card }) {
             </li>
             {isModalOpen &&
                 <Modal closeModal={closeModal}>
-                    <ModalIngredient name={card.name} image={card.image_large} calories={card.calories} proteins={card.proteins} fat={card.fat} carbohydrates={card.carbohydrates} />
+                    <IngredientDetails name={card.name} image={card.image_large} calories={card.calories} proteins={card.proteins} fat={card.fat} carbohydrates={card.carbohydrates} />
                 </Modal>
             }
         </>
