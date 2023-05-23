@@ -30,12 +30,12 @@ function Modal({ children, closeModal }) {
     return (
         ReactDOM.createPortal(
             <div className={styles.cover} ref={cover} onClick={(e) => { if (e.target === cover.current) closeModal() }}>
-                <form className={styles.window}>
+                <section className={styles.window}>
                     <button onClick={closeModal} className={styles.exit__button} type="button">
                         <CloseIcon type="primary" />
                     </button>
                     {children}
-                </form>
+                </section>
             </div>
             , modalRoot
         )
