@@ -16,8 +16,8 @@ function IngredientItem({ card }) {
 
     return (
         <>
-            <li className={styles.container} onClick={() => openModal()}>
-                <img src={card.image} />
+            <li className={styles.container} onClick={openModal}>
+                <img src={card.image} alt={card.name} />
                 <Counter count="1" size='default' />
                 <div className={`mt-1 mb-1 ${styles.counter}`}>
                     <span className='text text_type_digits-default mr-2'>{card.price}</span>

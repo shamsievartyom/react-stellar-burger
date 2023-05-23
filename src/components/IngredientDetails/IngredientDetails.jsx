@@ -16,7 +16,7 @@ function IngredientDetails({ name, image, calories, proteins, fat, carbohydrates
     return (
         <>
             <h2 className='mt-10 mr-10 ml-10 text text_type_main-large'>Детали ингредиента</h2>
-            <img src={image} />
+            <img src={image} alt={name} />
             <p className='mt-4 text text_type_main-medium'>{name}</p>
             <ul className={`mt-8 mb-15 ${styles.info__container}`}>
                 <li className={styles.info__article}>
