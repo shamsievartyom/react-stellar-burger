@@ -2,30 +2,43 @@ import { useRef, useEffect, Suspense } from 'react'
 import styles from './Modal.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
+import ReactDOM from 'react-dom';
 
-function Modal({ children, setModalVisability }) {
+function Modal({ children, closeModal }) {
 
     Modal.propTypes = {
         children: PropTypes.object,
-        setModalVisability: PropTypes.func,
     };
 
     useEffect(() => {
-        document.addEventListener('keydown', (e) => {
-            if (e.key === 'Escape') setModalVisability(false)
-        });
-    })
+        function closeByEscape(evt) {
+            if (evt.key === 'Escape') {
+                closeModal();
+            }
+        }
+        document.addEventListener('keydown', closeByEscape);
+        return () => {
+            document.removeEventListener('keydown', closeByEscape);
+        }
+
+    }, [])
 
     const cover = useRef(null);
+
+    const modalRoot = document.getElementById('modal-root');
+
     return (
-        <div className={styles.cover} ref={cover} onClick={(e) => { if (e.target === cover.current) setModalVisability(false) }}>
-            <form className={styles.window}>
-                <button onClick={() => setModalVisability(false)} className={styles.exit__button} type="button">
-                    <CloseIcon type="primary" />
-                </button>
-                {children}
-            </form>
-        </div>
+        ReactDOM.createPortal(
+            <div className={styles.cover} ref={cover} onClick={(e) => { if (e.target === cover.current) closeModal() }}>
+                <form className={styles.window}>
+                    <button onClick={closeModal} className={styles.exit__button} type="button">
+                        <CloseIcon type="primary" />
+                    </button>
+                    {children}
+                </form>
+            </div>
+            , modalRoot
+        )
     )
 }
 

@@ -4,13 +4,14 @@ import { Button, Counter, CurrencyIcon } from '@ya.praktikum/react-developer-bur
 import styles from './BurgerConstructor.module.css'
 import { data } from '../../utils/data'
 import ModalOrder from '../ModalOrder/ModalOrder'
-import ModalPortal from '../ModalPortal/ModalPortal'
+import { useModal } from '../../hooks/useModal'
+import Modal from '../Modal/Modal'
 
 function BurgerConstructor() {
 
     const [burgerState, setBurgerState] = useState([])
-    const [modalVisability, setModalVisability] = useState(false)
     useEffect(() => setBurgerState(data), [])
+    const { isModalOpen, openModal, closeModal } = useModal();
 
     function totalPrice() {
         return burgerState.reduce((old, current) => {
@@ -24,11 +25,11 @@ function BurgerConstructor() {
             <div className={`mt-10 ${styles.footer}`}>
                 <span className="text text_type_digits-medium">{totalPrice()}</span>
                 <CurrencyIcon style='width: 50px; height: 50px' width="60" />
-                <Button extraClass='ml-4 mr-4' type='primary' htmlType='button' onClick={() => setModalVisability(true)}>Оформить заказ</Button>
-                {modalVisability &&
-                    <ModalPortal setModalVisability={setModalVisability}  >
+                <Button extraClass='ml-4 mr-4' type='primary' htmlType='button' onClick={openModal}>Оформить заказ</Button>
+                {isModalOpen &&
+                    <Modal closeModal={closeModal}>
                         <ModalOrder totalPrice={totalPrice().toString().padStart(6, '0')} />
-                    </ModalPortal>
+                    </Modal>
                 }
             </div>
         </section>

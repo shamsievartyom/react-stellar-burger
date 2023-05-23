@@ -1,9 +1,10 @@
 import React, { useState } from 'react'
 import styles from './IngredientItem.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
-import ModalPortal from '../ModalPortal/ModalPortal'
 import ModalIngredient from '../ModalIngredient/ModalIngredient'
 import PropTypes from 'prop-types';
+import { useModal } from '../../hooks/useModal'
+import Modal from '../Modal/Modal';
 
 function IngredientItem({ card }) {
 
@@ -11,11 +12,11 @@ function IngredientItem({ card }) {
         card: PropTypes.object,
     };
 
-    const [modalVisability, setModalVisability] = useState(false)
+    const { isModalOpen, openModal, closeModal } = useModal();
 
     return (
         <>
-            <li className={styles.container} onClick={() => setModalVisability(true)}>
+            <li className={styles.container} onClick={() => openModal()}>
                 <img src={card.image} />
                 <Counter count="1" size='default' />
                 <div className={`mt-1 mb-1 ${styles.counter}`}>
@@ -24,10 +25,10 @@ function IngredientItem({ card }) {
                 </div>
                 <h3 row="2" className={`text text_type_main-default ${styles.title}`}>{card.name}</h3>
             </li>
-            {modalVisability &&
-                <ModalPortal setModalVisability={setModalVisability}  >
+            {isModalOpen &&
+                <Modal closeModal={closeModal}>
                     <ModalIngredient name={card.name} image={card.image_large} calories={card.calories} proteins={card.proteins} fat={card.fat} carbohydrates={card.carbohydrates} />
-                </ModalPortal>
+                </Modal>
             }
         </>
     )
