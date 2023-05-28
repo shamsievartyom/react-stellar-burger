@@ -5,6 +5,7 @@ import IngredientDetails from '../IngredientDetails/IngredientDetails'
 import PropTypes from 'prop-types';
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal';
+import { useDrag } from "react-dnd";
 
 function IngredientItem({ card }) {
 
@@ -14,9 +15,17 @@ function IngredientItem({ card }) {
 
     const { isModalOpen, openModal, closeModal } = useModal();
 
+    const [{ isDragStart }, dragRef] = useDrag({//dnd
+        type: "ingredient",
+        item: card,
+        collect: (monitor) => ({
+            isDragStart: monitor.isDragging()
+        })
+    });
+
     return (
         <>
-            <li className={styles.container} onClick={openModal}>
+            <li className={isDragStart ? `${styles.container} ${styles.dragging}` : `${styles.container}`} ref={dragRef} onClick={openModal}>
                 <img src={card.image} alt={card.name} />
                 <Counter count="1" size='default' />
                 <div className={`mt-1 mb-1 ${styles.counter}`}>

@@ -1,16 +1,9 @@
 import { createStore } from 'redux';
+import { composeWithDevTools } from 'redux-devtools-extension'
+import rootReducer from '../reducers/rootReducer';
 
-const initialState = {ingredients: null};
-
-const reducer = (state = initialState, action) => {
-    switch (action.type) {
-        case 'UPDATE_CARDS':
-            return {...state, ingredients: action.payload}
-        default:
-            return state;
-    }
-};
-
-const store = createStore(reducer);
+const store = createStore(rootReducer,
+    composeWithDevTools()
+);
 
 export default store;

@@ -5,17 +5,15 @@ import funFetch from "../../functions/funFetch";
 import AppHeader from '../AppHeader/AppHeader.jsx'
 import AppMain from '../AppMain/AppMain.jsx'
 import store from "../../store/store";
+import { UPDATE_CARDS } from "../../actions/BurgerIngredients";
 
 function App() {
-
-  const [appState, setAppState] = useState([]);
 
   useEffect(() => {
     funFetch('ingredients', 'Get')
       .then((res) => {
-        setAppState(res)
         store.dispatch({
-          type: 'UPDATE_CARDS',
+          type: UPDATE_CARDS,
           payload: res
         });
       })

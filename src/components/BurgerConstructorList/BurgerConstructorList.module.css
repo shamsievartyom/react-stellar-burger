@@ -24,12 +24,10 @@
     margin-top: 16px;
 }
 
-.ingredient__container {
-    display: flex;
-    align-items: center;
+.undefined__ingredient{
+    height: 48px;
     width: 100%;
-    justify-content: end;
-    gap: 8px;
+    padding: 16px 24px;
 }
 
 .list::-webkit-scrollbar {

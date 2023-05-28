@@ -13,3 +13,7 @@
     min-height: 48px;
     text-align: center;
 }
+
+.dragging {
+    background-color: rgb(76 76 255 / 10%);
+}
