@@ -14,12 +14,14 @@ function BurgerConstructor() {
     const constructorIngredients = useSelector(store => store.BurgerConstructor)
 
     function totalPrice() {
-        if (constructorIngredients) {
-            return constructorIngredients.reduce((old, current) => {
+        let price = 0;
+        if (constructorIngredients.ingredients.length !== 0) {
+            price += constructorIngredients.ingredients.reduce((old, current) => {
                 return old + current.price;
             }, 0);
         }
-        else return 0
+        if (constructorIngredients.bun) price += constructorIngredients.bun.price * 2
+        return price
     }
 
     return (

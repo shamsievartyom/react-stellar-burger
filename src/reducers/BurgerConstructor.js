@@ -1,20 +1,24 @@
-import { ADD_CARD_TO_CONSTRUCTOR } from "../actions/BurgerConstructor";
+import { useCallback } from "react";
+import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION, DELETE_CARD_FROM_CONSTRUCTOR } from "../actions/BurgerConstructor";
 
-const reducer = (state = [], action) => {
+const reducer = (state = { bun: null, ingredients: [] }, action) => {
+
     switch (action.type) {
-        case "CHANGE_INGREDIENT_POSITION": {
-            //console.log(JSON.stringify(state) + "start")
-            state.splice(action.dragIndex, 1)
-            state.splice(action.hoverIndex, 0, state[action.dragIndex]);
-            //console.log(JSON.stringify(state) + "end")
-            return (state)
+        case CHANGE_INGREDIENT_POSITION: {
+            const newArr = [...state.ingredients]
+            newArr.splice(action.dragIndex, 1)
+            newArr.splice(action.hoverIndex, 0, state.ingredients[action.dragIndex]);
+            return { ...state, ingredients: newArr }
         }
         case ADD_CARD_TO_CONSTRUCTOR: {
             if (action.payload.type === 'bun') {
-                state = state.filter((el) => el.type !== 'bun')
-                return [...state, action.payload]
+                return { ...state, bun: action.payload };
             }
-            else return [...state, action.payload]
+            else return { ...state, ingredients: [...state.ingredients, action.payload] }
+        }
+        case DELETE_CARD_FROM_CONSTRUCTOR: {
+            const newIngredients = state.ingredients.filter(el => el.listId !== action.id)
+            return { ...state, ingredients: newIngredients }
         }
         default:
             return state;

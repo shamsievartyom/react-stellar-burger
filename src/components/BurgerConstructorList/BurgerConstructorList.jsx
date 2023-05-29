@@ -11,13 +11,8 @@ import BurgerItem from '../BurgerItem/BurgerItem';
 function BurgerConstructorList() {
 
     const cards = useSelector(store => store.BurgerConstructor)
-
-    let bun;
-
-    const data = cards.filter((el) => {//filter bun from array
-        if (el.type === 'bun') { bun = el; }
-        return (el.type !== 'bun')
-    })
+    const data = cards.ingredients;
+    const bun = cards.bun;
 
     const dispatcher = useDispatch();
 
@@ -35,20 +30,12 @@ function BurgerConstructorList() {
     });
 
     const moveCard = useCallback((dragIndex, hoverIndex) => {//dnd inside container
+        console.log("lel123")
         dispatcher({
             type: "CHANGE_INGREDIENT_POSITION",
             dragIndex,
             hoverIndex,
         })
-
-        // setCards((prevCards) =>
-        //     update(prevCards, {
-        //         $splice: [
-        //             [dragIndex, 1],
-        //             [hoverIndex, 0, prevCards[dragIndex]],
-        //         ],
-        //     }),
-        // )
     }, [])
 
     return (

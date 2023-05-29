@@ -23,13 +23,11 @@ function Modal({ children, closeModal }) {
 
     }, [])
 
-    const cover = useRef(null);
-
     const modalRoot = document.getElementById('modal-root');
 
     return (
         ReactDOM.createPortal(
-            <div className={styles.cover} ref={cover} onClick={(e) => { if (e.target === cover.current) closeModal() }}>
+            <div className={styles.cover} onClick={(e) => { if (e.target === e.currentTarget) closeModal() }}>
                 <section className={styles.window}>
                     <button onClick={closeModal} className={styles.exit__button} type="button">
                         <CloseIcon type="primary" />

@@ -2,12 +2,23 @@ import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd';
 import styles from './BurgerItem.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
+import { useDispatch } from 'react-redux';
+import { DELETE_CARD_FROM_CONSTRUCTOR } from '../../actions/BurgerConstructor';
 
 function BurgerItem({ card, index, moveCard }) {
 
-    const id = card.listId;
+    const dispatch = useDispatch()
 
+    const handleClose = function () {
+        dispatch({
+            type: DELETE_CARD_FROM_CONSTRUCTOR,
+            id: card.listId
+        })
+    }
+
+    const id = card.listId;
     const ref = useRef(null)
+
     const [{ handlerId }, drop] = useDrop({
         accept: "constructor",
         collect(monitor) {
@@ -69,7 +80,7 @@ function BurgerItem({ card, index, moveCard }) {
     return (
         <li ref={ref} data-handler-id={handlerId} className={styles.ingredient__container}>
             <DragIcon type="primary" />
-            <ConstructorElement extraClass='mr-4' key={card.listId} text={card.name} thumbnail={card.image} price={card.price} />
+            <ConstructorElement handleClose={handleClose} extraClass='mr-4' key={card.listId} text={card.name} thumbnail={card.image} price={card.price} />
         </li>)
 }
 
