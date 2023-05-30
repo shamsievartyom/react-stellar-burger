@@ -27,7 +27,7 @@ function IngredientItem({ card }) {
         <>
             <li className={isDragStart ? `${styles.container} ${styles.dragging}` : `${styles.container}`} ref={dragRef} onClick={openModal}>
                 <img src={card.image} alt={card.name} />
-                <Counter count="1" size='default' />
+                {card.count !== 0 && <Counter count={card.count} size='default' />}
                 <div className={`mt-1 mb-1 ${styles.counter}`}>
                     <span className='text text_type_digits-default mr-2'>{card.price}</span>
                     <CurrencyIcon type="primary" />

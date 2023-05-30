@@ -5,8 +5,9 @@ import PropTypes from 'prop-types';
 import { useDrag, useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_CARD_TO_CONSTRUCTOR } from '../../actions/BurgerConstructor'
+import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION } from '../../actions/BurgerConstructor'
 import BurgerItem from '../BurgerItem/BurgerItem';
+import { DECREASE_COUNT_OF_INGREDIENT, INCREASE_COUNT_OF_INGREDIENT } from '../../actions/BurgerIngredients';
 
 function BurgerConstructorList() {
 
@@ -18,10 +19,20 @@ function BurgerConstructorList() {
 
     const [{ isDragging }, dropRef] = useDrop({//dnd ingredient to constructor
         accept: "ingredient",
-        drop(data) {
+        drop(card) {
             dispatcher({
                 type: ADD_CARD_TO_CONSTRUCTOR,
-                payload: { ...data, listId: uuidv4() }
+                payload: { ...card, listId: uuidv4() }
+            })
+            if (card.type === "bun" && cards.bun !== null) {
+                dispatcher({
+                    type: DECREASE_COUNT_OF_INGREDIENT,
+                    id: cards.bun._id,
+                })
+            }
+            dispatcher({
+                type: INCREASE_COUNT_OF_INGREDIENT,
+                id: card._id,
             })
         },
         collect: (monitor) => ({
@@ -30,9 +41,8 @@ function BurgerConstructorList() {
     });
 
     const moveCard = useCallback((dragIndex, hoverIndex) => {//dnd inside container
-        console.log("lel123")
         dispatcher({
-            type: "CHANGE_INGREDIENT_POSITION",
+            type: CHANGE_INGREDIENT_POSITION,
             dragIndex,
             hoverIndex,
         })

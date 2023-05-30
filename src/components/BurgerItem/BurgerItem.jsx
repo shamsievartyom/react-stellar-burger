@@ -4,6 +4,7 @@ import styles from './BurgerItem.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch } from 'react-redux';
 import { DELETE_CARD_FROM_CONSTRUCTOR } from '../../actions/BurgerConstructor';
+import { DECREASE_COUNT_OF_INGREDIENT } from '../../actions/BurgerIngredients';
 
 function BurgerItem({ card, index, moveCard }) {
 
@@ -13,6 +14,10 @@ function BurgerItem({ card, index, moveCard }) {
         dispatch({
             type: DELETE_CARD_FROM_CONSTRUCTOR,
             id: card.listId
+        })
+        dispatch({
+            type : DECREASE_COUNT_OF_INGREDIENT,
+            id: card._id,
         })
     }
 
@@ -57,7 +62,7 @@ function BurgerItem({ card, index, moveCard }) {
                 return
             }
             // Time to actually perform the action
-            moveCard(dragIndex, hoverIndex)
+            moveCard(dragIndex, hoverIndex, card._id)
             // Note: we're mutating the monitor item here!
             // Generally it's better to avoid mutations,
             // but it's good here for the sake of performance

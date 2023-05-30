@@ -10,7 +10,7 @@ function IngredientsList({ type }) {
     type: PropTypes.string,
   };
 
-  const cards = useSelector(store => store.BurgerIngredients.data)
+  const cards = useSelector(store => store.BurgerIngredients)
 
   return (
     <ul className={`mt-6 mb-10 ml-4 mr-4 ${styles.list}`}>
