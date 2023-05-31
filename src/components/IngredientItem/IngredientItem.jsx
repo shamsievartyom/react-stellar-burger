@@ -2,10 +2,12 @@ import React, { useState } from 'react'
 import styles from './IngredientItem.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientDetails from '../IngredientDetails/IngredientDetails'
-import PropTypes from 'prop-types';
+import PropTypes, { func } from 'prop-types';
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal';
 import { useDrag } from "react-dnd";
+import { useDispatch } from 'react-redux';
+import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../actions/IngredientDetails';
 
 function IngredientItem({ card }) {
 
@@ -14,6 +16,7 @@ function IngredientItem({ card }) {
     };
 
     const { isModalOpen, openModal, closeModal } = useModal();
+    const dispatch = useDispatch();
 
     const [{ isDragStart }, dragRef] = useDrag({//dnd
         type: "ingredient",
@@ -23,9 +26,17 @@ function IngredientItem({ card }) {
         })
     });
 
+    function handleOpenIngredientDetails() {
+        dispatch({
+            type: UPDATE_INGREDIENT_DETAILS_DATA,
+            data: card,
+        })
+        openModal()
+    }
+
     return (
         <>
-            <li className={isDragStart ? `${styles.container} ${styles.dragging}` : `${styles.container}`} ref={dragRef} onClick={openModal}>
+            <li className={isDragStart ? `${styles.container} ${styles.dragging}` : `${styles.container}`} ref={dragRef} onClick={handleOpenIngredientDetails}>
                 <img src={card.image} alt={card.name} />
                 {card.count !== 0 && <Counter count={card.count} size='default' />}
                 <div className={`mt-1 mb-1 ${styles.counter}`}>
@@ -36,7 +47,7 @@ function IngredientItem({ card }) {
             </li>
             {isModalOpen &&
                 <Modal closeModal={closeModal}>
-                    <IngredientDetails name={card.name} image={card.image_large} calories={card.calories} proteins={card.proteins} fat={card.fat} carbohydrates={card.carbohydrates} />
+                    <IngredientDetails />
                 </Modal>
             }
         </>
