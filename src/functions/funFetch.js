@@ -19,8 +19,8 @@ function funFetch(url, method, body) {
 
     return fetch(config.baseUrl + url, {
         headers: config.headers,
-        method,
-        body,
+        method: method,
+        body: JSON.stringify(body),
     })
         .then(checkResponse)
 }
