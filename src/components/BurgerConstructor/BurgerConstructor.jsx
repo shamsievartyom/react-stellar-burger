@@ -28,15 +28,17 @@ function BurgerConstructor() {
     }
 
     function handleOrderButton() {
-        openModal();
-        funFetch('orders', 'POST', { ingredients: [constructorIngredients.bun._id, ...constructorIngredients.ingredients.map((el)=> el._id)] })
-            .then((data) => {
-                dispatch({
-                    type: ADD_DATA_TO_ORDER_DETAILS,
-                    data: data,
+        if (constructorIngredients.bun) {
+            openModal();
+            funFetch('orders', 'POST', { ingredients: [constructorIngredients.bun._id, ...constructorIngredients.ingredients.map((el) => el._id)] })
+                .then((data) => {
+                    dispatch({
+                        type: ADD_DATA_TO_ORDER_DETAILS,
+                        data: data,
+                    })
                 })
-            })
-            .catch((err) => console.log(err))
+                .catch((err) => console.log(err))
+        }
     }
 
     return (
