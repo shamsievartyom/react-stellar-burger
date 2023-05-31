@@ -1,5 +1,6 @@
 import { useRef } from 'react'
 import { useDrag, useDrop } from 'react-dnd';
+import PropTypes from 'prop-types';
 import styles from './BurgerItem.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch } from 'react-redux';
@@ -16,7 +17,7 @@ function BurgerItem({ card, index, moveCard }) {
             id: card.listId
         })
         dispatch({
-            type : DECREASE_COUNT_OF_INGREDIENT,
+            type: DECREASE_COUNT_OF_INGREDIENT,
             id: card._id,
         })
     }
@@ -79,7 +80,6 @@ function BurgerItem({ card, index, moveCard }) {
             isDragging: monitor.isDragging(),
         }),
     })
-    const opacity = isDragging ? 0 : 1
     dragref(drop(ref))
 
     return (
@@ -88,5 +88,11 @@ function BurgerItem({ card, index, moveCard }) {
             <ConstructorElement handleClose={handleClose} extraClass='mr-4' key={card.listId} text={card.name} thumbnail={card.image} price={card.price} />
         </li>)
 }
+
+BurgerItem.propTypes = {
+    card: PropTypes.object,
+    index: PropTypes.number,
+    moveCard: PropTypes.func,
+};
 
 export default BurgerItem

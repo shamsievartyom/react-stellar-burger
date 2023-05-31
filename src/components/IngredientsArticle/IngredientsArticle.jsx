@@ -4,11 +4,6 @@ import PropTypes from 'prop-types';
 
 const IngredientsArticle = forwardRef(function IngredientsArticle({ title, type }, ref) {
 
-    IngredientsArticle.propTypes = {
-        title: PropTypes.string,
-        type: PropTypes.string,
-    };
-
     return (
         <article ref={ref} className='mt-10'>
             <h2 className='text text_type_main-medium' children={title} />
@@ -16,5 +11,10 @@ const IngredientsArticle = forwardRef(function IngredientsArticle({ title, type 
         </article>
     )
 })
+
+IngredientsArticle.propTypes = {
+    title: PropTypes.string,
+    type: PropTypes.string,
+};
 
 export default IngredientsArticle

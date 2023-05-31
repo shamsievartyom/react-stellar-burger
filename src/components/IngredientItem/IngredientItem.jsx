@@ -11,10 +11,6 @@ import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../actions/IngredientDetails'
 
 function IngredientItem({ card }) {
 
-    IngredientItem.propTypes = {
-        card: PropTypes.object,
-    };
-
     const { isModalOpen, openModal, closeModal } = useModal();
     const dispatch = useDispatch();
 
@@ -53,5 +49,9 @@ function IngredientItem({ card }) {
         </>
     )
 }
+
+IngredientItem.propTypes = {
+    card: PropTypes.object,
+};
 
 export default IngredientItem

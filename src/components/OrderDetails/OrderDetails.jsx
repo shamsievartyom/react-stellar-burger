@@ -8,10 +8,6 @@ function OrderDetails({ totalPrice }) {
 
     const order = useSelector(state => state.OrderDetails)
 
-    OrderDetails.propTypes = {
-        totalPrice: PropTypes.number,
-    };
-
     return (
         <>
             <span className={`mt-30 text text_type_digits-large ${styles.price}`}>{totalPrice}</span>
@@ -22,5 +18,10 @@ function OrderDetails({ totalPrice }) {
         </>
     )
 }
+
+OrderDetails.propTypes = {
+    totalPrice: PropTypes.number,
+};
+
 
 export default OrderDetails

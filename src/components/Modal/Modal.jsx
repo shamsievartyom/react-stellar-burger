@@ -6,10 +6,6 @@ import ReactDOM from 'react-dom';
 
 function Modal({ children, closeModal }) {
 
-    Modal.propTypes = {
-        children: PropTypes.object,
-    };
-
     useEffect(() => {
         function closeByEscape(evt) {
             if (evt.key === 'Escape') {
@@ -39,5 +35,9 @@ function Modal({ children, closeModal }) {
         )
     )
 }
+
+Modal.propTypes = {
+    children: PropTypes.object,
+};
 
 export default Modal
