@@ -1,4 +1,4 @@
-import styles from "./app.module.css";
+import styles from "./App.module.css";
 import { data } from "../../utils/data";
 import { useState, useEffect } from "react";
 import funFetch from "../../functions/funFetch";
