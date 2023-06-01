@@ -1,24 +1,18 @@
 import styles from "./App.module.css";
 import { data } from "../../utils/data";
 import { useState, useEffect } from "react";
-import doFetch from "../../functions/doFetch";
 import AppHeader from '../AppHeader/AppHeader.jsx'
 import AppMain from '../AppMain/AppMain.jsx'
-import store from "../../redux/store/store";
-import { UPDATE_CARDS } from "../../redux/actions/BurgerIngredients";
+import { useDispatch } from "react-redux";
+import { getIngredientsThunk } from "../../redux/thunks/App";
 
 function App() {
 
+  const dispatch = useDispatch()
+
   useEffect(() => {
-    doFetch('ingredients', 'Get')
-      .then((res) => {
-        store.dispatch({
-          type: UPDATE_CARDS,
-          payload: res
-        });
-      })
-      .catch((err) => console.log(err))
-  }, [])
+    dispatch(getIngredientsThunk());
+  }, [dispatch]);
 
   return (
     <div className={styles.app}>
