@@ -37,6 +37,7 @@ function Modal({ children, closeModal }) {
 
 Modal.propTypes = {
     children: PropTypes.object,
+    closeModal: PropTypes.func,
 };
 
 export default Modal
