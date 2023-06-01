@@ -1,7 +1,7 @@
 import styles from "./App.module.css";
 import { data } from "../../utils/data";
 import { useState, useEffect } from "react";
-import funFetch from "../../functions/funFetch";
+import funFetch from "../../functions/doFetch";
 import AppHeader from '../AppHeader/AppHeader.jsx'
 import AppMain from '../AppMain/AppMain.jsx'
 import store from "../../redux/store/store";
