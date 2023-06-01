@@ -29,13 +29,13 @@ function BurgerConstructor() {
 
     function handleOrderButton() {
         if (constructorIngredients.bun) {
-            openModal();
             funFetch('orders', 'POST', { ingredients: [constructorIngredients.bun._id, ...constructorIngredients.ingredients.map((el) => el._id)] })
                 .then((data) => {
                     dispatch({
                         type: ADD_DATA_TO_ORDER_DETAILS,
                         data: data,
                     })
+                    openModal();
                 })
                 .catch((err) => console.log(err))
         }
@@ -50,7 +50,7 @@ function BurgerConstructor() {
                 <Button extraClass='ml-4 mr-4' type='primary' htmlType='button' data={constructorIngredients} onClick={handleOrderButton}>Оформить заказ</Button>
                 {isModalOpen &&
                     <Modal closeModal={closeModal}>
-                        <OrderDetails totalPrice={totalPrice().toString().padStart(6, '0')} />
+                        <OrderDetails />
                     </Modal>
                 }
             </div>
