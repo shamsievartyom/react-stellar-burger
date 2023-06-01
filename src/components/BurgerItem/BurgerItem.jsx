@@ -85,7 +85,7 @@ function BurgerItem({ card, index, moveCard }) {
     return (
         <li ref={ref} data-handler-id={handlerId} className={styles.ingredient__container}>
             <DragIcon type="primary" />
-            <ConstructorElement handleClose={handleClose} extraClass='mr-4' key={card.listId} text={card.name} thumbnail={card.image} price={card.price} />
+            <ConstructorElement handleClose={handleClose} extraClass='mr-4' text={card.name} thumbnail={card.image} price={card.price} />
         </li>)
 }
 
