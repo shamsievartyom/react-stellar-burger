@@ -55,7 +55,6 @@ function BurgerConstructorList() {
                     extraClass={`mr-4 ${styles.ingredient__top}`}
                     isLocked={true}
                     type='top'
-                    key={bun.listId}
                     text={bun.name + " (верх)"}
                     thumbnail={bun.image}
                     price={bun.price}
@@ -65,7 +64,7 @@ function BurgerConstructorList() {
             )}
             <ul className={styles.list}>
                 {data?.map((card, i) => {
-                    return <BurgerItem card={card} index={i} moveCard={moveCard} />
+                    return <BurgerItem card={card} index={i} key={card.listId} moveCard={moveCard} />
                 })}
             </ul>
             {bun ? (
@@ -73,7 +72,6 @@ function BurgerConstructorList() {
                     extraClass={`mr-4 ${styles.ingredient__bottom}`}
                     isLocked="true"
                     type='bottom'
-                    key={bun.lisId}
                     text={bun.name + " (низ)"}
                     thumbnail={bun.image}
                     price={bun.price}
