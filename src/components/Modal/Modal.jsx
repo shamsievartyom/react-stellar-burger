@@ -4,6 +4,7 @@ import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
 
+const modalRoot = document.getElementById('modal-root');
 function Modal({ children, closeModal }) {
 
     useEffect(() => {
@@ -18,8 +19,6 @@ function Modal({ children, closeModal }) {
         }
 
     }, [])
-
-    const modalRoot = document.getElementById('modal-root');
 
     return (
         ReactDOM.createPortal(
