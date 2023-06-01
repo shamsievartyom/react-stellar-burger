@@ -4,8 +4,8 @@ import PropTypes from 'prop-types';
 import styles from './BurgerItem.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
 import { useDispatch } from 'react-redux';
-import { DELETE_CARD_FROM_CONSTRUCTOR } from '../../actions/BurgerConstructor';
-import { DECREASE_COUNT_OF_INGREDIENT } from '../../actions/BurgerIngredients';
+import { DELETE_CARD_FROM_CONSTRUCTOR } from '../../redux/actions/BurgerConstructor';
+import { DECREASE_COUNT_OF_INGREDIENT } from '../../redux/actions/BurgerIngredients';
 
 function BurgerItem({ card, index, moveCard }) {
 

@@ -7,7 +7,7 @@ import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import funFetch from '../../functions/funFetch'
-import { ADD_DATA_TO_ORDER_DETAILS } from '../../actions/OrderDetails'
+import { ADD_DATA_TO_ORDER_DETAILS } from '../../redux/actions/OrderDetails'
 
 function BurgerConstructor() {
 

@@ -7,7 +7,7 @@ import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal';
 import { useDrag } from "react-dnd";
 import { useDispatch } from 'react-redux';
-import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../actions/IngredientDetails';
+import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../redux/actions/IngredientDetails';
 
 function IngredientItem({ card }) {
 

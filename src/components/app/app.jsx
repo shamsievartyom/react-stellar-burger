@@ -4,8 +4,8 @@ import { useState, useEffect } from "react";
 import funFetch from "../../functions/funFetch";
 import AppHeader from '../AppHeader/AppHeader.jsx'
 import AppMain from '../AppMain/AppMain.jsx'
-import store from "../../store/store";
-import { UPDATE_CARDS } from "../../actions/BurgerIngredients";
+import store from "../../redux/store/store";
+import { UPDATE_CARDS } from "../../redux/actions/BurgerIngredients";
 
 function App() {
 

@@ -5,9 +5,9 @@ import PropTypes from 'prop-types';
 import { useDrag, useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
 import { useDispatch, useSelector } from 'react-redux';
-import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION } from '../../actions/BurgerConstructor'
+import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION } from '../../redux/actions/BurgerConstructor'
 import BurgerItem from '../BurgerItem/BurgerItem';
-import { DECREASE_COUNT_OF_INGREDIENT, INCREASE_COUNT_OF_INGREDIENT } from '../../actions/BurgerIngredients';
+import { DECREASE_COUNT_OF_INGREDIENT, INCREASE_COUNT_OF_INGREDIENT } from '../../redux/actions/BurgerIngredients';
 
 function BurgerConstructorList() {
 
