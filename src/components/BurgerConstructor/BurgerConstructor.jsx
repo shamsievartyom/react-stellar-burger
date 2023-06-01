@@ -6,7 +6,7 @@ import OrderDetails from '../OrderDetails/OrderDetails'
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
-import funFetch from '../../functions/doFetch'
+import doFetch from '../../functions/doFetch'
 import { ADD_DATA_TO_ORDER_DETAILS } from '../../redux/actions/OrderDetails'
 
 function BurgerConstructor() {
@@ -29,7 +29,7 @@ function BurgerConstructor() {
 
     function handleOrderButton() {
         if (constructorIngredients.bun) {
-            funFetch('orders', 'POST', { ingredients: [constructorIngredients.bun._id, ...constructorIngredients.ingredients.map((el) => el._id)] })
+            doFetch('orders', 'POST', { ingredients: [constructorIngredients.bun._id, ...constructorIngredients.ingredients.map((el) => el._id)] })
                 .then((data) => {
                     dispatch({
                         type: ADD_DATA_TO_ORDER_DETAILS,

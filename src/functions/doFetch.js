@@ -1,4 +1,4 @@
-function funFetch(url, method, body) {
+function doFetch(url, method, body) {
     const config = {
         baseUrl: 'https://norma.nomoreparties.space/api/',
         headers: {
@@ -25,4 +25,4 @@ function funFetch(url, method, body) {
         .then(checkResponse)
 }
 
-export default funFetch
+export default doFetch
