@@ -38,7 +38,7 @@ function BurgerConstructor() {
             <div className={`mt-10 ${styles.footer}`}>
                 <span className="text text_type_digits-medium">{totalPrice()}</span>
                 <CurrencyIcon style='width: 50px; height: 50px' width="60" />
-                <Button extraClass='ml-4 mr-4' type='primary' htmlType='button' data={constructorIngredients} onClick={handleOrderButton}>Оформить заказ</Button>
+                <Button extraClass={constructorIngredients.bun ? 'ml-4 mr-4' : `ml-4 mr-4 ${styles.button_disabled}`} type='primary' htmlType='button' data={constructorIngredients} onClick={handleOrderButton}>Оформить заказ</Button>
                 {isModalOpen &&
                     <Modal closeModal={closeModal}>
                         <OrderDetails />

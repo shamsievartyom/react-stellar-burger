@@ -1,11 +1,21 @@
-.footer{
+.footer {
     display: flex;
     margin-bottom: 52px;
     align-items: center;
     justify-content: end;
 }
 
-.section{
+.section {
     max-width: 600px;
     width: 100%;
+}
+
+.button_disabled {
+    color: #7f7f7f;
+    background: linear-gradient(63.18deg, #400d59 0%, #26267f 100%);
+}
+
+.button_disabled:hover {
+    box-shadow: none;
+    filter: none;
 }
