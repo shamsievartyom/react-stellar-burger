@@ -1,8 +1,12 @@
+import React from 'react'
 import BurgerIngredients from '../BurgerIngredients/BurgerIngredients.jsx'
 import BurgerConstructor from '../BurgerConstructor/BurgerConstructor.jsx'
 import styles from './AppMain.module.css'
 import { DndProvider } from "react-dnd";
 import { HTML5Backend } from "react-dnd-html5-backend";
+
+function HomePage() {
+    
 
 function AppMain() {
     return (
@@ -14,5 +18,6 @@ function AppMain() {
         </main>
     )
 }
+}
 
-export default AppMain
+export default HomePage
