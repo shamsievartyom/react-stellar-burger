@@ -1,22 +1,17 @@
 import React from 'react'
 import styles from './IngredientDetails.module.css'
 import PropTypes from 'prop-types';
+import { useSelector } from 'react-redux';
 
-function IngredientDetails({ name, image, calories, proteins, fat, carbohydrates }) {
+function IngredientDetails() {
 
-    IngredientDetails.propTypes = {
-        name: PropTypes.string,
-        image: PropTypes.string,
-        calories: PropTypes.number,
-        proteins: PropTypes.number,
-        fat: PropTypes.number,
-        carbohydrates: PropTypes.number,
-    };
+    const card = useSelector(state => state.IngredientDetails)
+    const { name, image_large, calories, proteins, fat, carbohydrates } = card
 
     return (
         <>
             <h2 className='mt-10 mr-10 ml-10 text text_type_main-large'>Детали ингредиента</h2>
-            <img src={image} alt={name} />
+            <img src={image_large} alt={name} />
             <p className='mt-4 text text_type_main-medium'>{name}</p>
             <ul className={`mt-8 mb-15 ${styles.info__container}`}>
                 <li className={styles.info__article}>

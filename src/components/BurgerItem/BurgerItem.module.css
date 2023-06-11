@@ -1,0 +1,7 @@
+.ingredient__container {
+    display: flex;
+    align-items: center;
+    width: 100%;
+    justify-content: end;
+    gap: 8px;
+}

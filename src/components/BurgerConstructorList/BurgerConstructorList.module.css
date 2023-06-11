@@ -3,6 +3,7 @@
     align-items: end;
     margin: 0;
     padding: 0;
+    width: 100%;
     list-style-type: none;
     flex-direction: column;
     overflow: overlay;
@@ -24,12 +25,10 @@
     margin-top: 16px;
 }
 
-.ingredient__container {
-    display: flex;
-    align-items: center;
+.undefined__ingredient{
+    height: 48px;
     width: 100%;
-    justify-content: end;
-    gap: 8px;
+    padding: 16px 24px;
 }
 
 .list::-webkit-scrollbar {

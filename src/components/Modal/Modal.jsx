@@ -3,12 +3,10 @@ import styles from './Modal.module.css'
 import { CloseIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import PropTypes from 'prop-types';
 import ReactDOM from 'react-dom';
+import ModalOverlay from '../ModalOverlay/ModalOverlay';
 
+const modalRoot = document.getElementById('modal-root');
 function Modal({ children, closeModal }) {
-
-    Modal.propTypes = {
-        children: PropTypes.object,
-    };
 
     useEffect(() => {
         function closeByEscape(evt) {
@@ -23,23 +21,24 @@ function Modal({ children, closeModal }) {
 
     }, [])
 
-    const cover = useRef(null);
-
-    const modalRoot = document.getElementById('modal-root');
-
     return (
         ReactDOM.createPortal(
-            <div className={styles.cover} ref={cover} onClick={(e) => { if (e.target === cover.current) closeModal() }}>
+            <ModalOverlay closeModal={closeModal}>
                 <section className={styles.window}>
                     <button onClick={closeModal} className={styles.exit__button} type="button">
                         <CloseIcon type="primary" />
                     </button>
                     {children}
                 </section>
-            </div>
+            </ModalOverlay>
             , modalRoot
         )
     )
 }
+
+Modal.propTypes = {
+    children: PropTypes.object,
+    closeModal: PropTypes.func,
+};
 
 export default Modal

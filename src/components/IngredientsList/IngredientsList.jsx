@@ -6,11 +6,7 @@ import PropTypes from 'prop-types';
 
 function IngredientsList({ type }) {
 
-  IngredientsList.propTypes = {
-    type: PropTypes.string,
-};
-
-  const cards = useSelector(state => state.ingredients?.data)
+  const cards = useSelector(store => store.BurgerIngredients)
 
   return (
     <ul className={`mt-6 mb-10 ml-4 mr-4 ${styles.list}`}>
@@ -20,5 +16,9 @@ function IngredientsList({ type }) {
     </ul>
   )
 }
+
+IngredientsList.propTypes = {
+  type: PropTypes.string,
+};
 
 export default IngredientsList
