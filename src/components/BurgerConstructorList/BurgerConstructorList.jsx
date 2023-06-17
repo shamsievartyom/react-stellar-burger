@@ -17,7 +17,7 @@ function BurgerConstructorList() {
 
     const dispatcher = useDispatch();
 
-    const [{ isDragging }, dropRef] = useDrop({//dnd ingredient to constructor
+    const [{ isDragging, canDrop }, dropRef] = useDrop({//dnd ingredient to constructor
         accept: "ingredient",
         drop(card) {
             dispatcher({
@@ -36,7 +36,8 @@ function BurgerConstructorList() {
             })
         },
         collect: (monitor) => ({
-            isDragging: monitor.isOver()
+            isDragging: monitor.isOver(),
+            canDrop: monitor.canDrop(),
         })
     });
 
@@ -49,7 +50,7 @@ function BurgerConstructorList() {
     }, [])
 
     return (
-        <div className={styles.main__container} ref={dropRef}>
+        <div className={`${styles.main__container} ${canDrop ? styles.onDrag : ''} ${isDragging ? styles.isDragging : ''}`} ref={dropRef}>
             {bun ? (
                 <ConstructorElement
                     extraClass={`mr-4 ${styles.ingredient__top}`}

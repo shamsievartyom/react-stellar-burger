@@ -11,10 +11,33 @@
     gap: 16px;
 }
 
-.main__container{
+.main__container {
     display: flex;
     flex-direction: column;
     align-items: end;
+    border-radius: 10px;
+}
+
+@keyframes change-color {
+    0% {
+        outline: 3px solid #801ab3;
+    }
+
+    50% {
+        outline: 3px solid #4c4cff;
+    }
+
+    100% {
+        outline: 3px solid #801ab3;
+    }
+}
+
+.onDrag {
+    animation: change-color 2s linear infinite;
+}
+
+.isDragging {
+    background-color: rgb(76 76 255 / 10%);
 }
 
 .ingredient__top {
@@ -25,7 +48,7 @@
     margin-top: 16px;
 }
 
-.undefined__ingredient{
+.undefined__ingredient {
     height: 48px;
     width: 100%;
     padding: 16px 24px;

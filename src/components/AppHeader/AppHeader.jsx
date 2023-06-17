@@ -1,3 +1,4 @@
+import { NavLink } from 'react-router-dom'
 import styles from './AppHeader.module.css'
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
@@ -7,24 +8,24 @@ function AppHeader() {
             <nav className={styles.navigation}>
                 <ul className={`mt-4 mb-4 ${styles.button__list}`}>
                     <li>
-                        <a className={`p-5 ${styles.button}`}>
+                        <NavLink to='/' className={`p-5 ${styles.button}`}>
                             <BurgerIcon type="secondary" />
                             <span className="text text_type_main-default text_color_inactive">Конструктор</span>
-                        </a>
+                        </NavLink>
                     </li>
                     <li>
-                        <a className={`p-5 ${styles.button}`}>
+                        <NavLink to='something' className={`p-5 ${styles.button}`}>
                             <ListIcon type="secondary" />
                             <span className="text text_type_main-default text_color_inactive">Лента заказов</span>
-                        </a>
+                        </NavLink>
                     </li>
                 </ul>
             </nav>
             <Logo />
-            <a className={`mt-4 mb-4 p-5 ${styles.button} ${styles.button_type_profile}`}>
+            <NavLink to="/profile" className={`mt-4 mb-4 p-5 ${styles.button} ${styles.button_type_profile}`}>
                 <ProfileIcon type="secondary" />
                 <span className="text text_type_main-default text_color_inactive">Личный кабинет</span>
-            </a>
+            </NavLink>
         </header>
     )
 }

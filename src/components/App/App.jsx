@@ -1,8 +1,7 @@
 
 import { useEffect } from "react";
 import { useDispatch } from "react-redux";
-import { Route } from 'react-router-dom';
-import { Routes } from 'react-router';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { getIngredientsThunk } from "../../redux/thunks/App";
 import HomePage from "../../pages/HomePage/HomePage";
 import Layout from "../../pages/Layout/Layout";
@@ -13,6 +12,7 @@ import ResetPassword from "../../pages/ResetPassword/ResetPassword";
 import Profile from "../../pages/Profile/Profile";
 import Ingredients from "../../pages/Ingredients/Ingredients";
 import WrongRoute from "../../pages/WrongRoute/WrongRoute";
+import { OnlyAuth, OnlyUnAuth } from "../ProtectedRoute/ProtectedRoute";
 
 function App() {
 
@@ -22,15 +22,18 @@ function App() {
     dispatch(getIngredientsThunk());
   }, [dispatch]);
 
+  const location = useLocation();
+  const background = location.state && location.state.background;
+
   return (
     <Routes>
       <Route path='/' element={<Layout />}>
         <Route path='/' element={<HomePage />} />
-        <Route path='/login' element={<Login />} />
-        <Route path='/register' element={<Register />} />
-        <Route path='/forgot-password' element={<ForgotPassword />} />
-        <Route path='/reset-password' element={<ResetPassword />} />
-        <Route path='/profile' element={<Profile />} />
+        <Route path='/login' element={<OnlyUnAuth component={<Login />} />} />
+        <Route path='/register' element={<OnlyUnAuth component={<Register />} />} />
+        <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPassword />} />} />
+        <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPassword />} />} />
+        <Route path='/profile' element={<OnlyAuth component={<Profile />} />} />
         <Route path='/ingredients/:id' element={<Ingredients />} />
         <Route path='*' element={<WrongRoute />} />
       </Route>

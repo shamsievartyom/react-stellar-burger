@@ -21,12 +21,21 @@ function BurgerIngredients() {
     if (elementRectFisrt.top <= containerRect.top) {
       setCurrentTab('one')
     }
-    if (elementRectSecond.top <= containerRect.top) {
+    if (elementRectSecond.top <= containerRect.top + 1) {
       setCurrentTab('two')
     }
-    if (elementRectThird.top <= containerRect.top) {
+    if (elementRectThird.top <= containerRect.top + 1) {
       setCurrentTab('three')
     }
+  }
+
+  const handleClick = (value) => {
+    if (value === "one") containerRef.current.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+    else if (value === "two") elementRefSecond.current.scrollIntoView({ behavior: 'smooth' });
+    else if (value === "three") elementRefThird.current.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (
@@ -34,17 +43,17 @@ function BurgerIngredients() {
       <h1 className={`text text_type_main-large`}>Собери бургер</h1>
       <ul className={`mt-5 ${styles.tab__list}`}>
         <li>
-          <Tab value="one" active={currentTab === 'one'} onClick={setCurrentTab}>
+          <Tab value="one" active={currentTab === 'one'} onClick={handleClick}>
             Булки
           </Tab>
         </li>
         <li>
-          <Tab value="two" active={currentTab === 'two'} onClick={setCurrentTab}>
+          <Tab value="two" active={currentTab === 'two'} onClick={handleClick}>
             Соусы
           </Tab>
         </li>
         <li>
-          <Tab value="three" active={currentTab === 'three'} onClick={setCurrentTab}>
+          <Tab value="three" active={currentTab === 'three'} onClick={handleClick}>
             Начинки
           </Tab>
         </li>
