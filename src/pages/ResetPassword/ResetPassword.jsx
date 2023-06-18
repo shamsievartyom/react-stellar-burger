@@ -21,6 +21,7 @@ function ResetPassword() {
     e.preventDefault();
     doFetch('password-reset/reset', 'POST', { "password": passwordInput, "token": codeInput })
       .then((data) => {
+        // ????????????????
       })
       .catch((err) => console.log(err))
   }

@@ -1,7 +1,7 @@
 import React, { useState } from 'react'
 import styles from './ForgotPassword.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import doFetch from '../../functions/doFetch'
 
 function ForgotPassword() {
@@ -11,10 +11,13 @@ function ForgotPassword() {
     setInputValue(e.target.value)
   }
 
+  const navigate = useNavigate();
+
   const handleSumbit = (e) => {
     e.preventDefault();
     doFetch('password-reset', 'POST', { "email": inputValue })
       .then((data) => {
+        if(data.success) navigate('/reset-password')
       })
       .catch((err) => console.log(err))
   }
