@@ -13,6 +13,7 @@ function BurgerConstructor() {
     const { isModalOpen, openModal, closeModal } = useModal();
 
     const constructorIngredients = useSelector(store => store.BurgerConstructor)
+    const isAuth = useSelector(store => store.user.isAuthChecked)
     const dispatch = useDispatch()
 
     function totalPrice() {
@@ -27,7 +28,7 @@ function BurgerConstructor() {
     }
 
     function handleOrderButton() {
-        if (constructorIngredients.bun) {
+        if (constructorIngredients.bun && isAuth) {
             dispatch(sendOrderThunk(constructorIngredients, openModal));
         }
     }
@@ -38,7 +39,7 @@ function BurgerConstructor() {
             <div className={`mt-10 ${styles.footer}`}>
                 <span className="text text_type_digits-medium">{totalPrice()}</span>
                 <CurrencyIcon style='width: 50px; height: 50px' width="60" />
-                <Button extraClass={constructorIngredients.bun ? 'ml-4 mr-4' : `ml-4 mr-4 ${styles.button_disabled}`} type='primary' htmlType='button' data={constructorIngredients} onClick={handleOrderButton}>Оформить заказ</Button>
+                <Button extraClass={(constructorIngredients.bun && isAuth) ? 'ml-4 mr-4' : `ml-4 mr-4 ${styles.button_disabled}`} type='primary' htmlType='button' data={constructorIngredients} onClick={handleOrderButton}>Оформить заказ</Button>
                 {isModalOpen &&
                     <Modal closeModal={closeModal}>
                         <OrderDetails />
