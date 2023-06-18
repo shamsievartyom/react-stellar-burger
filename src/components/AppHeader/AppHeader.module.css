@@ -27,6 +27,10 @@
     text-decoration: none;
 }
 
+.button_active{
+    color: #F2F2F3;
+}
+
 .button_type_profile{
     justify-self: end;
 }
