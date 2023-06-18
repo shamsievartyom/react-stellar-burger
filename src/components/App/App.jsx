@@ -25,19 +25,30 @@ function App() {
   const location = useLocation();
   const background = location.state && location.state.background;
 
+  console.log(location.state);
+
   return (
-    <Routes>
-      <Route path='/' element={<Layout />}>
-        <Route path='/' element={<HomePage />} />
-        <Route path='/login' element={<OnlyUnAuth component={<Login />} />} />
-        <Route path='/register' element={<OnlyUnAuth component={<Register />} />} />
-        <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPassword />} />} />
-        <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPassword />} />} />
-        <Route path='/profile' element={<OnlyAuth component={<Profile />} />} />
-        <Route path='/ingredients/:id' element={<Ingredients />} />
-        <Route path='*' element={<WrongRoute />} />
-      </Route>
-    </Routes>
+    <>
+      <Routes location={background || location}>
+        <Route path='/' element={<Layout />}>
+          <Route path='/' element={<HomePage />} />
+          <Route path='/ingredients/:id' element={<Ingredients />} />
+          <Route path='/login' element={<OnlyUnAuth component={<Login />} />} />
+          <Route path='/register' element={<OnlyUnAuth component={<Register />} />} />
+          <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPassword />} />} />
+          <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPassword />} />} />
+          <Route path='/profile' element={<OnlyAuth component={<Profile />} />} />
+          <Route path='*' element={<WrongRoute />} />
+        </Route >
+      </Routes >
+      {/* {
+        background && (
+          <Routes>
+            <Route path='/ingredients/:id' element={<Ingredients />} />
+          </Routes>
+        )
+      } */}
+    </>
   );
 
 }

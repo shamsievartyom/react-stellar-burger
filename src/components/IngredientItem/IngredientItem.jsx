@@ -8,11 +8,16 @@ import Modal from '../Modal/Modal';
 import { useDrag } from "react-dnd";
 import { useDispatch } from 'react-redux';
 import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../redux/actions/IngredientDetails';
+import { useLocation, useNavigate } from 'react-router-dom';
 
 function IngredientItem({ card }) {
 
     const { isModalOpen, openModal, closeModal } = useModal();
     const dispatch = useDispatch();
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
 
     const [{ isDragStart }, dragRef] = useDrag({//dnd
         type: "ingredient",
@@ -27,6 +32,7 @@ function IngredientItem({ card }) {
             type: UPDATE_INGREDIENT_DETAILS_DATA,
             data: card,
         })
+        navigate(`/ingredients/${card._id}`, { state: { background: location } })
         openModal()
     }
 

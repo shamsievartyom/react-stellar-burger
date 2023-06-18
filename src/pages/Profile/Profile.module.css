@@ -11,6 +11,21 @@
     justify-content: center;
 }
 
+.left_menu__container {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
+}
+
+.description {
+    width: 100%;
+    max-width: 320px;
+}
+
+.nav {
+    width: 100%;
+}
+
 .navigation__container {
     align-items: flex-end;
     display: flex;
@@ -19,6 +34,7 @@
     margin-top: 0;
     margin-bottom: 0;
     list-style: none;
+    padding: 0;
 }
 
 .navigation__button {
@@ -30,11 +46,17 @@
     align-items: center;
 }
 
-.navigation__button_active{
+.navigation__button_active {
     color: #F2F2F3;
 }
 
 .navigation__list_element {
     width: 100%;
     max-width: 320px;
+}
+
+.form__submit_container {
+    display: flex;
+    width: 100%;
+    justify-content: end;
 }
