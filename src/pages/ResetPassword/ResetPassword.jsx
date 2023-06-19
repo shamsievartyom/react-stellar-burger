@@ -1,13 +1,15 @@
 import React, { useState } from 'react'
 import styles from './ResetPassword.module.css'
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate } from 'react-router-dom'
 import doFetch from '../../functions/doFetch'
 
 function ResetPassword() {
 
   const [passwordInput, setPasswordInput] = useState('')
   const [codeInput, setCodeInput] = useState('')
+
+  const navigate = useNavigate();
 
   const handlePasswordInputChange = (e) => {
     setPasswordInput(e.target.value)
@@ -21,7 +23,7 @@ function ResetPassword() {
     e.preventDefault();
     doFetch('password-reset/reset', 'POST', { "password": passwordInput, "token": codeInput })
       .then((data) => {
-        // ????????????????
+        if (data.success) navigate('/login')
       })
       .catch((err) => console.log(err))
   }

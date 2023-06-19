@@ -1,29 +1,6 @@
 import doFetch from "../../functions/doFetch";
 import { SET_AUTH_CHECK, SET_USER } from "../actions/user";
 
-// export const loginThunk = ({ email, password }) => async (dispatch) => {
-//     doFetch('auth/login', 'POST', { "email": email, "password": password })
-//         .then((res) => {
-//             dispatch({
-//                 // type: UPDATE_CARDS,
-//                 payload: res
-//             });
-//         })
-//         .catch((err) => console.log(err))
-// }
-
-// export const registerThunk = ({ email, password, name }) => async (dispatch) => {
-//     doFetch('auth/register', 'POST', { "email": email, "password": password, "name": name })
-//         .then((res) => {
-//             dispatch({
-//                 // type: UPDATE_CARDS,
-//                 payload: res
-//             });
-//         })
-//         .catch((err) => console.log(err))
-// }
-
-
 export const registerThunk = (name, email, password) => {
     return (dispatch) => {
         return fetch("https://norma.nomoreparties.space/api/auth/register", {
@@ -163,6 +140,10 @@ export const logout = () => {
             })
         })
             .then(() => {
+                dispatch({
+                    type: SET_AUTH_CHECK,
+                    payload: false,
+                })
                 localStorage.removeItem("refreshToken");
                 localStorage.removeItem("accessToken");
             })

@@ -37,7 +37,7 @@ function Profile() {
 
   const handleLogout = () => {
     dispatch(logout())
-      .then(() => navigate('/login'))//redirect to '/'  ???
+      .then(() => navigate('/login'))
   }
 
   const handleSubmit = (e) => {
