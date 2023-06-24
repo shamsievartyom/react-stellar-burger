@@ -9,6 +9,7 @@
     overflow: overlay;
     height: calc(100vh - 536px);
     gap: 16px;
+    scrollbar-gutter: stable;
 }
 
 .main__container {

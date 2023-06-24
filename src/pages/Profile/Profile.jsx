@@ -8,20 +8,15 @@ import { changeUserInfo } from '../../redux/thunks/Profile'
 
 function Profile() {
 
-  const [nameInput, setNameInput] = useState('')
+  const userData = useSelector((state) => state.user.user);
+
+  const [nameInput, setNameInput] = useState(userData.name)
   const [passwordInput, setPasswordInput] = useState('')
-  const [emailInput, setEmailInput] = useState('')
+  const [emailInput, setEmailInput] = useState(userData.email)
 
   const dispatch = useDispatch();
 
   const navigate = useNavigate()
-
-  const userData = useSelector((state) => state.user.user);
-
-  useEffect(() => {
-    setNameInput(userData.name)
-    setEmailInput(userData.email)
-  }, [])
 
   const handleNameInputChange = (e) => {
     setNameInput(e.target.value)
@@ -64,7 +59,7 @@ function Profile() {
             <li className={styles.navigation__list_element}>
               <NavLink to='/orders' className={({ isActive }) =>
                 isActive ? `text text_type_main-medium ${styles.navigation__button} ${styles.navigation__button_active}`
-                  : `text text_type_main-medium ${styles.navigation__button}`}>Истроия заказов</NavLink>
+                  : `text text_type_main-medium ${styles.navigation__button}`}>История заказов</NavLink>
             </li>
             <li className={styles.navigation__list_element}>
               <NavLink onClick={handleLogout} className={`text text_type_main-medium ${styles.navigation__button}`} >Выход</NavLink>
