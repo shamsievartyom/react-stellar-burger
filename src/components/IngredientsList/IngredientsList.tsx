@@ -1,12 +1,17 @@
-import { useEffect } from 'react'
+import { FC, useEffect } from 'react'
 import { useSelector } from 'react-redux'
 import IngredientItem from '../IngredientItem/IngredientItem'
 import styles from './IngredientsList.module.css'
 import PropTypes from 'prop-types';
+import { TIngredient, TIngredientType } from '../../redux/types';
 
-function IngredientsList({ type }) {
+type TIngredientsListProps = {
+  type: TIngredientType,
+}
 
-  const cards = useSelector(store => store.BurgerIngredients)
+const IngredientsList: FC<TIngredientsListProps> = ({ type }) => {
+
+  const cards = useSelector((store: any) => store.BurgerIngredients as TIngredient[])
 
   return (
     <ul className={`mt-6 mb-10 ml-4 mr-4 ${styles.list}`}>
@@ -16,9 +21,5 @@ function IngredientsList({ type }) {
     </ul>
   )
 }
-
-IngredientsList.propTypes = {
-  type: PropTypes.string,
-};
 
 export default IngredientsList

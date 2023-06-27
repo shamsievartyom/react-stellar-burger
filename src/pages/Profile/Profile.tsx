@@ -1,14 +1,15 @@
 import { Button, EditIcon, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { useEffect, useState } from 'react'
+import React, { useEffect, useState, FC } from 'react'
 import styles from './Profile.module.css'
 import { Link, NavLink, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
 import { logout } from '../../redux/thunks/auth'
 import { changeUserInfo } from '../../redux/thunks/Profile'
+import { TUserUser } from '../../redux/types'
 
-function Profile() {
+const Profile: FC = () => {
 
-  const userData = useSelector((state) => state.user.user);
+  const userData = useSelector((state: any) => state.user.user as TUserUser);
 
   const [nameInput, setNameInput] = useState(userData.name)
   const [passwordInput, setPasswordInput] = useState('')
@@ -18,24 +19,24 @@ function Profile() {
 
   const navigate = useNavigate()
 
-  const handleNameInputChange = (e) => {
+  const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNameInput(e.target.value)
   }
 
-  const handlePasswordInputChange = (e) => {
+  const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordInput(e.target.value)
   }
 
-  const handleEmailInputChange = (e) => {
+  const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailInput(e.target.value)
   }
 
   const handleLogout = () => {
     dispatch(logout())
-      .then(() => navigate('/login'))
+      // .then(() => navigate('/login'))
   }
 
-  const handleSubmit = (e) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault()
     dispatch(changeUserInfo(nameInput, emailInput, passwordInput))
   }
@@ -62,22 +63,22 @@ function Profile() {
                   : `text text_type_main-medium ${styles.navigation__button}`}>История заказов</NavLink>
             </li>
             <li className={styles.navigation__list_element}>
-              <NavLink onClick={handleLogout} className={`text text_type_main-medium ${styles.navigation__button}`} >Выход</NavLink>
+              <button onClick={handleLogout} className={`text text_type_main-medium ${styles.navigation__button}`} >Выход</button>
             </li>
           </ul>
         </nav>
         <p className={`mt-20 text text_type_main-default text_color_inactive ${styles.description}`}>В этом разделе вы можете
           изменить свои персональные данные</p>
       </div>
-      <form className={styles.form}>
+      <form className={styles.form} onSubmit={handleSubmit}>
         <Input icon={"EditIcon"} value={nameInput} onChange={handleNameInputChange} placeholder='Имя'></Input>
-        <EmailInput icon={"EditIcon"} value={emailInput} onChange={handleEmailInputChange} extraClass='mt-6' placeholder='Логин'></EmailInput>
+        <EmailInput value={emailInput} onChange={handleEmailInputChange} extraClass='mt-6' placeholder='Логин'></EmailInput>
         <PasswordInput icon={"EditIcon"} value={passwordInput} onChange={handlePasswordInputChange} extraClass='mt-6' placeholder='Пароль'></PasswordInput>
         <div className={`mt-6 ${styles.form__submit_container}`}>
           <Button onClick={handleDiscard} htmlType="button" type="secondary" size="medium">
             Отмена
           </Button>
-          <Button onClick={handleSubmit} htmlType="submit" type="primary" size="medium" extraClass="ml-2">
+          <Button htmlType="submit" type="primary" size="medium" extraClass="ml-2">
             Сохранить
           </Button>
         </div>

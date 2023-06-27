@@ -1,11 +1,12 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styles from './IngredientDetails.module.css'
 import PropTypes from 'prop-types';
 import { useSelector } from 'react-redux';
+import { TIngredient } from '../../redux/types';
 
-function IngredientDetails() {
+const IngredientDetails: FC = () => {
 
-    const card = useSelector(state => state.IngredientDetails)
+    const card = useSelector((state: any) => state.IngredientDetails as TIngredient)
     const { name, image_large, calories, proteins, fat, carbohydrates } = card
 
     return (

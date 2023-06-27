@@ -1,23 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import styles from './ForgotPassword.module.css'
 import { Button, EmailInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
 import doFetch from '../../functions/doFetch'
 
-function ForgotPassword() {
+const ForgotPassword: FC = () => {
 
   const [inputValue, setInputValue] = useState('')
-  const onInputEmailChange = e => {
+  const onInputEmailChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setInputValue(e.target.value)
   }
 
   const navigate = useNavigate();
 
-  const handleSumbit = (e) => {
+  const handleSumbit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    doFetch('password-reset', 'POST', { "email": inputValue })
+    doFetch<{
+      success: boolean,
+      message: string,
+    }>('password-reset', 'POST', { "email": inputValue })
       .then((data) => {
-        if(data.success) navigate('/reset-password')
+        if (data.success) navigate('/reset-password')
       })
       .catch((err) => console.log(err))
   }

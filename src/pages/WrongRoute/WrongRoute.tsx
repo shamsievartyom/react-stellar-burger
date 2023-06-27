@@ -1,7 +1,7 @@
-import React from 'react'
+import React, { FC } from 'react'
 import styles from './WrongRoute.module.css'
 
-function WrongRoute() {
+const WrongRoute: FC = () => {
     return (
         <div className={styles.container}>
             <p className='text text_type_digits-large'>404</p>

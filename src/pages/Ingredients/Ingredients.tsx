@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, FC } from 'react'
 import IngredientDetails from '../../components/IngredientDetails/IngredientDetails'
 import { useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../redux/actions/IngredientDetails';
 import styles from './Ingredients.module.css'
+import { TIngredient } from '../../redux/types';
 
-function Ingredients() {
+const Ingredients: FC = () => {
 
   const dispatch = useDispatch()
 
   const { id } = useParams();
 
-  const cards = useSelector(state => state.BurgerIngredients)
+  const cards = useSelector((state: any) => state.BurgerIngredients as TIngredient[])
   const card = cards.find((el) => el._id === id)
   if (card) {
     dispatch({

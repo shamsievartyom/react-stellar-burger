@@ -1,6 +1,13 @@
 import { useState, useCallback } from "react";
 
-export const useModal = () => {
+type TuseModal = () => {
+  isModalOpen: boolean,
+  openModal: () => void,
+  closeModal: () => void,
+}
+
+
+export const useModal: TuseModal = () => {
   const [isModalOpen, setIsModalOpen] = useState(false);
 
   const openModal = useCallback(() => {

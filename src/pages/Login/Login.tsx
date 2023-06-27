@@ -1,26 +1,26 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import styles from './Login.module.css'
 import { Button, EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link } from 'react-router-dom'
 import { useDispatch } from 'react-redux'
 import { login } from '../../redux/thunks/auth'
 
-function Login() {
+const Login: FC = () => {
 
   const [passwordInput, setPasswordInput] = useState('')
   const [emailInput, setEmailInput] = useState('')
 
-  const handlePasswordInputChange = (e) => {
+  const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordInput(e.target.value)
   }
 
-  const handleEmailInputChange = (e) => {
+  const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailInput(e.target.value)
   }
 
   const dispatch = useDispatch();
 
-  const handleOnSubmit = (e) => {
+  const handleOnSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     dispatch(login(emailInput, passwordInput));
   }

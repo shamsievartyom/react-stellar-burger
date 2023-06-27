@@ -1,34 +1,33 @@
 import { Button, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import { Link, useNavigate } from 'react-router-dom'
 import styles from './Register.module.css'
 import doFetch from '../../functions/doFetch'
 import { registerThunk } from '../../redux/thunks/auth'
 import { useDispatch } from 'react-redux'
 
-function Register() {
+const Register: FC = () => {
 
   const [nameInput, setNameInput] = useState('')
   const [passwordInput, setPasswordInput] = useState('')
   const [emailInput, setEmailInput] = useState('')
 
 
-  const handleNameInputChange = (e) => {
+  const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNameInput(e.target.value)
   }
 
-  const handlePasswordInputChange = (e) => {
+  const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordInput(e.target.value)
   }
 
-  const handleEmailInputChange = (e) => {
+  const handleEmailInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setEmailInput(e.target.value)
   }
 
   const dispatch = useDispatch();
-  const navigate = useNavigate();
 
-  const handleSumbit = (e) => {
+  const handleSumbit = (e: React.FormEvent) => {
     e.preventDefault();
     dispatch(registerThunk(nameInput, emailInput, passwordInput))
   }

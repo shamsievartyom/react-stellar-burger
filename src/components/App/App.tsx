@@ -1,7 +1,6 @@
-
-import { useEffect } from "react";
-import { useDispatch } from "react-redux";
-import { Route, Routes, useLocation } from 'react-router-dom';
+import { useEffect, FC } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { getIngredientsThunk } from "../../redux/thunks/App";
 import HomePage from "../../pages/HomePage/HomePage";
 import Layout from "../../pages/Layout/Layout";
@@ -14,7 +13,7 @@ import Ingredients from "../../pages/Ingredients/Ingredients";
 import WrongRoute from "../../pages/WrongRoute/WrongRoute";
 import { OnlyAuth, OnlyUnAuth } from "../ProtectedRoute/ProtectedRoute";
 
-function App() {
+const App: FC = () => {
 
   const dispatch = useDispatch()
 

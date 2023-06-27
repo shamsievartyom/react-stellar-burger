@@ -1,22 +1,22 @@
-import { useState, useRef } from 'react'
+import { useState, useRef, FC } from 'react'
 import styles from './BurgerIngredients.module.css'
 import { Tab } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientsArticle from '../IngredientsArticle/IngredientsArticle'
 import { element } from 'prop-types'
 
-function BurgerIngredients() {
+const BurgerIngredients: FC = () => {
   const [currentTab, setCurrentTab] = useState('one')
 
-  const containerRef = useRef(null);
-  const elementRefFirst = useRef(null);
-  const elementRefSecond = useRef(null);
-  const elementRefThird = useRef(null);
+  const containerRef = useRef<HTMLDivElement>(null);
+  const elementRefFirst = useRef<HTMLElement>(null);
+  const elementRefSecond = useRef<HTMLElement>(null);
+  const elementRefThird = useRef<HTMLElement>(null);
 
-  function handleScroll(evt) {
-    const containerRect = containerRef.current.getBoundingClientRect();
-    const elementRectFisrt = elementRefFirst.current.getBoundingClientRect();
-    const elementRectSecond = elementRefSecond.current.getBoundingClientRect();
-    const elementRectThird = elementRefThird.current.getBoundingClientRect();
+  const handleScroll = () => {
+    const containerRect = containerRef.current!.getBoundingClientRect();
+    const elementRectFisrt = elementRefFirst.current!.getBoundingClientRect();
+    const elementRectSecond = elementRefSecond.current!.getBoundingClientRect();
+    const elementRectThird = elementRefThird.current!.getBoundingClientRect();
 
     if (elementRectFisrt.top <= containerRect.top) {
       setCurrentTab('one')
@@ -29,13 +29,13 @@ function BurgerIngredients() {
     }
   }
 
-  const handleClick = (value) => {
-    if (value === "one") containerRef.current.scrollTo({
+  const handleClick = (value: string) => {
+    if (value === "one") containerRef.current?.scrollTo({
       top: 0,
       behavior: 'smooth'
     });
-    else if (value === "two") elementRefSecond.current.scrollIntoView({ behavior: 'smooth' });
-    else if (value === "three") elementRefThird.current.scrollIntoView({ behavior: 'smooth' });
+    else if (value === "two") elementRefSecond.current?.scrollIntoView({ behavior: 'smooth' });
+    else if (value === "three") elementRefThird.current?.scrollIntoView({ behavior: 'smooth' });
   }
 
   return (

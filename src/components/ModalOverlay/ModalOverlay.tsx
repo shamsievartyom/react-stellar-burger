@@ -1,8 +1,13 @@
-import React from 'react'
+import React, { FC, ReactNode } from 'react'
 import styles from './ModalOverlay.module.css'
 import { useNavigate } from 'react-router-dom'
 
-function ModalOverlay({ closeModal, children }) {
+type TModalOverlay = {
+    children: ReactNode,
+    closeModal: () => void,
+}
+
+const ModalOverlay: FC<TModalOverlay> = ({ closeModal, children }) => {
 
     const navigate = useNavigate()
 

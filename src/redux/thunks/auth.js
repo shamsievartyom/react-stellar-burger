@@ -1,3 +1,4 @@
+import { useNavigate } from "react-router-dom";
 import doFetch from "../../functions/doFetch";
 import { SET_AUTH_CHECK, SET_USER } from "../actions/user";
 
@@ -146,6 +147,7 @@ export const logout = () => {
                 })
                 localStorage.removeItem("refreshToken");
                 localStorage.removeItem("accessToken");
+                window.location.href = '/login';
             })
             .catch((err) => {
                 console.log(err);

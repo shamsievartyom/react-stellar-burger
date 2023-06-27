@@ -1,4 +1,4 @@
-import React, { useRef, useCallback } from 'react'
+import React, { useRef, useCallback, FC, useState } from 'react'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './BurgerConstructorList.module.css'
 import PropTypes from 'prop-types';
@@ -8,31 +8,32 @@ import { useDispatch, useSelector } from 'react-redux';
 import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION } from '../../redux/actions/BurgerConstructor'
 import BurgerItem from '../BurgerItem/BurgerItem';
 import { DECREASE_COUNT_OF_INGREDIENT, INCREASE_COUNT_OF_INGREDIENT } from '../../redux/actions/BurgerIngredients';
+import { TBurgerConstructor, TIngredient } from '../../redux/types';
 
-function BurgerConstructorList() {
+const BurgerConstructorList: FC = () => {
 
-    const cards = useSelector(store => store.BurgerConstructor)
-    const data = cards.ingredients;
-    const bun = cards.bun;
+    const cards = useSelector((store: any) => store.BurgerConstructor as TBurgerConstructor)
+    const data = cards?.ingredients;
+    const bun = cards?.bun;
 
     const dispatcher = useDispatch();
 
     const [{ isDragging, canDrop }, dropRef] = useDrop({//dnd ingredient to constructor
         accept: "ingredient",
-        drop(card) {
+        drop(card: TIngredient) {
             dispatcher({
                 type: ADD_CARD_TO_CONSTRUCTOR,
                 payload: { ...card, listId: uuidv4() }
             })
-            if (card.type === "bun" && cards.bun !== null) {
+            if (card?.type === "bun" && cards?.bun !== null) {
                 dispatcher({
                     type: DECREASE_COUNT_OF_INGREDIENT,
-                    id: cards.bun._id,
+                    id: cards?.bun._id,
                 })
             }
             dispatcher({
                 type: INCREASE_COUNT_OF_INGREDIENT,
-                id: card._id,
+                id: card?._id,
             })
         },
         collect: (monitor) => ({
@@ -71,7 +72,7 @@ function BurgerConstructorList() {
             {bun ? (
                 <ConstructorElement
                     extraClass={`mr-4 ${styles.ingredient__bottom}`}
-                    isLocked="true"
+                    isLocked={true}
                     type='bottom'
                     text={bun.name + " (низ)"}
                     thumbnail={bun.image}

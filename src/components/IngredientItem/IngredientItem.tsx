@@ -1,16 +1,21 @@
-import React, { useState } from 'react'
+import React, { FC, useState } from 'react'
 import styles from './IngredientItem.module.css'
 import { Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import IngredientDetails from '../IngredientDetails/IngredientDetails'
-import PropTypes, { func } from 'prop-types';
+import PropTypes, { func, object } from 'prop-types';
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal';
 import { useDrag } from "react-dnd";
 import { useDispatch } from 'react-redux';
 import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../redux/actions/IngredientDetails';
 import { useLocation, useNavigate } from 'react-router-dom';
+import { TIngredient } from '../../redux/types';
 
-function IngredientItem({ card }) {
+type TIngredientItemProps = {
+    card: TIngredient,
+}
+
+const IngredientItem: FC<TIngredientItemProps> = ({ card }) => {
 
     const { isModalOpen, openModal, closeModal } = useModal();
     const dispatch = useDispatch();
@@ -45,7 +50,7 @@ function IngredientItem({ card }) {
                     <span className='text text_type_digits-default mr-2'>{card.price}</span>
                     <CurrencyIcon type="primary" />
                 </div>
-                <h3 row="2" className={`text text_type_main-default ${styles.title}`}>{card.name}</h3>
+                <h3 className={`text text_type_main-default ${styles.title}`}>{card.name}</h3>
             </li>
             {isModalOpen &&
                 <Modal closeModal={closeModal}>
@@ -55,9 +60,5 @@ function IngredientItem({ card }) {
         </>
     )
 }
-
-IngredientItem.propTypes = {
-    card: PropTypes.object,
-};
 
 export default IngredientItem

@@ -1,9 +1,9 @@
-import { useRef } from 'react'
+import { useRef, FC } from 'react'
 import { NavLink } from 'react-router-dom'
 import styles from './AppHeader.module.css'
 import { Logo, BurgerIcon, ListIcon, ProfileIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 
-function AppHeader() {
+const AppHeader: FC = () => {
 
     const url = window.location.pathname
 

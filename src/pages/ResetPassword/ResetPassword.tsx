@@ -1,27 +1,30 @@
-import React, { useState } from 'react'
+import React, { useState, FC } from 'react'
 import styles from './ResetPassword.module.css'
 import { Button, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link, useNavigate } from 'react-router-dom'
 import doFetch from '../../functions/doFetch'
 
-function ResetPassword() {
+const ResetPassword: FC = () => {
 
   const [passwordInput, setPasswordInput] = useState('')
   const [codeInput, setCodeInput] = useState('')
 
   const navigate = useNavigate();
 
-  const handlePasswordInputChange = (e) => {
+  const handlePasswordInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setPasswordInput(e.target.value)
   }
 
-  const handleCodeInputChange = (e) => {
+  const handleCodeInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setCodeInput(e.target.value)
   }
 
-  const handleSumbit = (e) => {
+  const handleSumbit = (e: React.FormEvent) => {
     e.preventDefault();
-    doFetch('password-reset/reset', 'POST', { "password": passwordInput, "token": codeInput })
+    doFetch<{
+      success: boolean,
+      message: string,
+    }>('password-reset/reset', 'POST', { "password": passwordInput, "token": codeInput })
       .then((data) => {
         if (data.success) navigate('/login')
       })
