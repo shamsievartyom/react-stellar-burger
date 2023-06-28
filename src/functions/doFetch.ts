@@ -1,4 +1,4 @@
-function doFetch(url, method, body) {
+const doFetch = <T>(url: string, method: string, body?: {}): Promise<T> => {
     const config = {
         baseUrl: 'https://norma.nomoreparties.space/api/',
         headers: {
@@ -6,7 +6,7 @@ function doFetch(url, method, body) {
         }
     }
 
-    function checkResponse(res) {
+    function checkResponse(res: Response) {
         if (res.ok) {
             return res.json();
         };

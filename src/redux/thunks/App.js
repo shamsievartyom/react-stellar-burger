@@ -2,7 +2,7 @@ import doFetch from "../../functions/doFetch";
 import { UPDATE_CARDS } from "../actions/BurgerIngredients";
 
 export const getIngredientsThunk = () => async (dispatch) => {
-    doFetch('ingredients', 'Get')
+    doFetch('ingredients', 'GET')
         .then((res) => {
             dispatch({
                 type: UPDATE_CARDS,

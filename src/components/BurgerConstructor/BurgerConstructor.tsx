@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { FC, useCallback, useEffect, useState } from 'react'
 import BurgerConstructorList from '../BurgerConstructorList/BurgerConstructorList'
 import { Button, Counter, CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './BurgerConstructor.module.css'
@@ -7,13 +7,20 @@ import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal'
 import { useDispatch, useSelector } from 'react-redux'
 import { sendOrderThunk } from '../../redux/thunks/BurgerConstructor'
+import { TBurgerConstructor, TUserUser } from '../../redux/types'
+import { checkUserAuth } from '../../redux/thunks/auth'
 
-function BurgerConstructor() {
+const BurgerConstructor: FC = () => {
 
     const { isModalOpen, openModal, closeModal } = useModal();
 
-    const constructorIngredients = useSelector(store => store.BurgerConstructor)
+    const constructorIngredients = useSelector((store: any) => store.BurgerConstructor as TBurgerConstructor)
+    const user = useSelector((store: any) => store.user.user as TUserUser)
     const dispatch = useDispatch()
+
+    useEffect(() => {
+        dispatch(checkUserAuth())//check auth and disable order if not
+    }, [constructorIngredients, dispatch])
 
     function totalPrice() {
         let price = 0;
@@ -27,7 +34,7 @@ function BurgerConstructor() {
     }
 
     function handleOrderButton() {
-        if (constructorIngredients.bun) {
+        if (constructorIngredients.bun && user) {
             dispatch(sendOrderThunk(constructorIngredients, openModal));
         }
     }
@@ -37,8 +44,8 @@ function BurgerConstructor() {
             <BurgerConstructorList />
             <div className={`mt-10 ${styles.footer}`}>
                 <span className="text text_type_digits-medium">{totalPrice()}</span>
-                <CurrencyIcon style='width: 50px; height: 50px' width="60" />
-                <Button extraClass={constructorIngredients.bun ? 'ml-4 mr-4' : `ml-4 mr-4 ${styles.button_disabled}`} type='primary' htmlType='button' data={constructorIngredients} onClick={handleOrderButton}>Оформить заказ</Button>
+                <CurrencyIcon type='primary' />
+                <Button extraClass={(constructorIngredients.bun && user) ? 'ml-4 mr-4' : `ml-4 mr-4 ${styles.button_disabled}`} type='primary' htmlType='button' onClick={handleOrderButton}>Оформить заказ</Button>
                 {isModalOpen &&
                     <Modal closeModal={closeModal}>
                         <OrderDetails />

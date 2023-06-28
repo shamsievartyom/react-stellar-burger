@@ -24,6 +24,11 @@
     align-items: center;
     gap: 8px;
     border-radius: 50px;
+    text-decoration: none;
+}
+
+.button_active{
+    color: #F2F2F3;
 }
 
 .button_type_profile{
