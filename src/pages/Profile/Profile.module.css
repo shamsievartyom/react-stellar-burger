@@ -44,6 +44,9 @@
     color: #8585AD;
     text-decoration: none;
     align-items: center;
+    background: inherit;
+    border: none;
+    cursor: pointer;
 }
 
 .navigation__button_active {

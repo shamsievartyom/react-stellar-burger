@@ -1,23 +1,21 @@
 import { Button, EditIcon, EmailInput, Input, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import React, { useEffect, useState, FC } from 'react'
 import styles from './Profile.module.css'
-import { Link, NavLink, useNavigate } from 'react-router-dom'
-import { useDispatch, useSelector } from 'react-redux'
+import { NavLink } from 'react-router-dom'
+import { useDispatch } from 'react-redux'
+import { useSelector } from '../../hooks/useSelector'
 import { logout } from '../../redux/thunks/auth'
 import { changeUserInfo } from '../../redux/thunks/Profile'
-import { TUserUser } from '../../redux/types'
 
 const Profile: FC = () => {
 
-  const userData = useSelector((state: any) => state.user.user as TUserUser);
+  const userData = useSelector((state) => state.user.user);
 
-  const [nameInput, setNameInput] = useState(userData.name)
+  const [nameInput, setNameInput] = useState(userData?.name || '')
   const [passwordInput, setPasswordInput] = useState('')
-  const [emailInput, setEmailInput] = useState(userData.email)
+  const [emailInput, setEmailInput] = useState(userData?.email || '')
 
   const dispatch = useDispatch();
-
-  const navigate = useNavigate()
 
   const handleNameInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setNameInput(e.target.value)
@@ -33,7 +31,6 @@ const Profile: FC = () => {
 
   const handleLogout = () => {
     dispatch(logout())
-      // .then(() => navigate('/login'))
   }
 
   const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
@@ -42,8 +39,8 @@ const Profile: FC = () => {
   }
 
   const handleDiscard = () => {
-    setNameInput(userData.name)
-    setEmailInput(userData.email)
+    setNameInput(userData?.name || '')
+    setEmailInput(userData?.email || '')
     setPasswordInput('')
   }
 

@@ -1,9 +1,9 @@
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import React, { useEffect, FC } from "react";
 import { SET_AUTH_CHECK } from "../../redux/actions/user";
 import { checkUserAuth } from "../../redux/thunks/auth";
-import { TUserUser } from "../../redux/types";
+import { useSelector } from '../../hooks/useSelector'
 
 type ProtectedRouteProps = {
     onlyUnAuth: boolean,
@@ -11,8 +11,8 @@ type ProtectedRouteProps = {
 }
 
 const ProtectedRoute: FC<ProtectedRouteProps> = ({ onlyUnAuth = false, component }) => {
-    const isAuthChecked = useSelector((store: any) => store.user.isAuthChecked as boolean);
-    const user = useSelector((store: any) => store.user.user as TUserUser);
+    const isAuthChecked = useSelector((store) => store.user.isAuthChecked);
+    const user = useSelector((store) => store.user.user);
     const location = useLocation();
     const dispatch = useDispatch();
 
@@ -46,8 +46,3 @@ const ProtectedRoute: FC<ProtectedRouteProps> = ({ onlyUnAuth = false, component
 
 export const OnlyAuth = (props: any) => (<ProtectedRoute onlyUnAuth={false} {...props} />);
 export const OnlyUnAuth = (props: any) => (<ProtectedRoute onlyUnAuth={true} {...props} />);
-
-// export const OnlyAuth = (props: React.IntrinsicAttributes & React.ReactNode) => ProtectedRoute({ onlyUnAuth: false, component: props.component });
-
-// export const OnlyUnAuth = (props: any) => <ProtectedRoute onlyUnAuth={ true} component = { ...props } />;
-// export const OnlyUnAuth = (props: ProtectedRouteProps) => <ProtectedRoute onlyUnAuth={ true} { ...props } />;

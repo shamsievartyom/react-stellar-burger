@@ -1,10 +1,10 @@
 import React, { useEffect, FC } from 'react'
 import IngredientDetails from '../../components/IngredientDetails/IngredientDetails'
 import { useParams } from 'react-router-dom';
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
+import { useSelector } from '../../hooks/useSelector'
 import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../redux/actions/IngredientDetails';
 import styles from './Ingredients.module.css'
-import { TIngredient } from '../../redux/types';
 
 const Ingredients: FC = () => {
 
@@ -12,7 +12,7 @@ const Ingredients: FC = () => {
 
   const { id } = useParams();
 
-  const cards = useSelector((state: any) => state.BurgerIngredients as TIngredient[])
+  const cards = useSelector((state) => state.BurgerIngredients)
   const card = cards.find((el) => el._id === id)
   if (card) {
     dispatch({

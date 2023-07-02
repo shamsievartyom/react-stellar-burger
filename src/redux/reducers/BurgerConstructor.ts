@@ -1,7 +1,13 @@
 import { useCallback } from "react";
-import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION, DELETE_CARD_FROM_CONSTRUCTOR } from "../actions/BurgerConstructor";
+import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION, DELETE_CARD_FROM_CONSTRUCTOR, TBurgerConstructorActions } from "../actions/BurgerConstructor";
+import { TIngredient } from "../types";
 
-const reducer = (state = { bun: null, ingredients: [] }, action) => {
+export type TBurgerConstructor = {
+    bun: null | (TIngredient & { listId: string }),
+    ingredients: (TIngredient & { listId: string })[],
+}
+
+const reducer = (state: TBurgerConstructor = { bun: null, ingredients: [] }, action: TBurgerConstructorActions) => {
 
     switch (action.type) {
         case CHANGE_INGREDIENT_POSITION: {

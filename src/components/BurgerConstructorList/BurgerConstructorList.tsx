@@ -1,18 +1,18 @@
 import React, { useRef, useCallback, FC, useState } from 'react'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components'
 import styles from './BurgerConstructorList.module.css'
-import PropTypes from 'prop-types';
 import { useDrag, useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch, useSelector } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION } from '../../redux/actions/BurgerConstructor'
 import BurgerItem from '../BurgerItem/BurgerItem';
 import { DECREASE_COUNT_OF_INGREDIENT, INCREASE_COUNT_OF_INGREDIENT } from '../../redux/actions/BurgerIngredients';
-import { TBurgerConstructor, TIngredient } from '../../redux/types';
+import { TIngredient } from '../../redux/types';
+import { useSelector } from '../../hooks/useSelector'
 
 const BurgerConstructorList: FC = () => {
 
-    const cards = useSelector((store: any) => store.BurgerConstructor as TBurgerConstructor)
+    const cards = useSelector((store) => store.BurgerConstructor)
     const data = cards?.ingredients;
     const bun = cards?.bun;
 

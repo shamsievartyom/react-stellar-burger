@@ -5,17 +5,17 @@ import styles from './BurgerConstructor.module.css'
 import OrderDetails from '../OrderDetails/OrderDetails'
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal'
-import { useDispatch, useSelector } from 'react-redux'
+import { useDispatch } from 'react-redux'
 import { sendOrderThunk } from '../../redux/thunks/BurgerConstructor'
-import { TBurgerConstructor, TUserUser } from '../../redux/types'
 import { checkUserAuth } from '../../redux/thunks/auth'
+import { useSelector } from '../../hooks/useSelector'
 
 const BurgerConstructor: FC = () => {
 
     const { isModalOpen, openModal, closeModal } = useModal();
 
-    const constructorIngredients = useSelector((store: any) => store.BurgerConstructor as TBurgerConstructor)
-    const user = useSelector((store: any) => store.user.user as TUserUser)
+    const constructorIngredients = useSelector((store) => store.BurgerConstructor)
+    const user = useSelector((store) => store.user.user)
     const dispatch = useDispatch()
 
     useEffect(() => {
