@@ -6,27 +6,30 @@ export const WS_GET_MESSAGE: 'WS_GET_MESSAGE' = 'WS_GET_MESSAGE';
 export const WS_SEND_MESSAGE: 'WS_SEND_MESSAGE' = 'WS_SEND_MESSAGE';
 
 export interface IWSConnectionStartAction {
-    readonly type: typeof WS_CONNECTION_START;
+    type: typeof WS_CONNECTION_START;
+    payload: string
 }
 
 export interface IWSConnectionSuccessAction {
-    readonly type: typeof WS_CONNECTION_SUCCESS;
-    readonly payload: Event;
+    type: typeof WS_CONNECTION_SUCCESS;
+    payload: Event
 }
 
 export interface IWSConnectionErrorAction {
-    readonly type: typeof WS_CONNECTION_ERROR;
-    readonly payload: Event;
+    type: typeof WS_CONNECTION_ERROR;
+    payload: Event;
 }
 
 export interface IWSConnectionClosedAction {
-    readonly type: typeof WS_CONNECTION_CLOSED;
-    readonly payload: Event;
+    type: typeof WS_CONNECTION_CLOSED;
+    payload: Event
 }
 export interface IWSGetMessageAction {
-    readonly type: typeof WS_GET_MESSAGE;
+    type: typeof WS_GET_MESSAGE;
+    payload: {}
 }
 export interface IWSSendMessageAction {
-    readonly type: typeof WS_SEND_MESSAGE;
+    type: typeof WS_SEND_MESSAGE;
+    payload: {};
 }
 export type WebSocketActions = IWSConnectionStartAction | IWSConnectionSuccessAction | IWSConnectionErrorAction | IWSConnectionClosedAction | IWSGetMessageAction | IWSSendMessageAction

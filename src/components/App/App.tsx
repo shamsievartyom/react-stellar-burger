@@ -35,7 +35,7 @@ const App: FC = () => {
         <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPassword />} />} />
         <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPassword />} />} />
         <Route path='/profile' element={<OnlyAuth component={<Profile />} />} />
-        <Route path='/feed' element={<OrderFeed />} />
+        <Route path='/order-feed' element={<OrderFeed />} />
         <Route path='*' element={<WrongRoute />} />
       </Route >
     </Routes >

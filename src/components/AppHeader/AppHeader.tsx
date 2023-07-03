@@ -18,9 +18,9 @@ const AppHeader: FC = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='something' className={`p-5 ${styles.button}`}>
-                            <ListIcon type={url === '/something' ? "primary" : "secondary"} />
-                            <span className={`text text_type_main-default text_color_inactive ${url === '/something' ? styles.button_active : ''}`}>Лента заказов</span>
+                        <NavLink to='order-feed' className={`p-5 ${styles.button}`}>
+                            <ListIcon type={url === '/order-feed' ? "primary" : "secondary"} />
+                            <span className={`text text_type_main-default text_color_inactive ${url === '/order-feed' ? styles.button_active : ''}`}>Лента заказов</span>
                         </NavLink>
                     </li>
                 </ul>

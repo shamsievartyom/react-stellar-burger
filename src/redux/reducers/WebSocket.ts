@@ -5,16 +5,15 @@ import {
     WS_GET_MESSAGE,
     WebSocketActions
   } from '../actions/WebSocket';
-  import type { IMessage, TWSActions } from '../types';
   
   type TWSState = {
     wsConnected: boolean;
-    messages: IMessage[];
+    messages: [];
   
     error?: Event;
   }
   
-  const initialState = {
+  const initialState: TWSState = {
     wsConnected: false,
     messages: []
   };

@@ -6,13 +6,14 @@ import { TBurgerIngredientsActions } from './actions/BurgerIngredients'
 import { IIngedientDetailsActions } from './actions/IngredientDetails'
 import { TOrderDetailsActions } from './actions/OrderDetails'
 import { userActions } from './actions/user'
+import { WebSocketActions } from './actions/WebSocket';
 
 //      THUNK TYPES      //
 
 export type RootState = ReturnType<typeof store.getState>;
 
 // Типизация всех экшенов приложения
-type TApplicationActions = TBurgerConstructorActions | TBurgerIngredientsActions | IIngedientDetailsActions | TOrderDetailsActions | userActions;
+export type TApplicationActions = TBurgerConstructorActions | TBurgerIngredientsActions | IIngedientDetailsActions | TOrderDetailsActions | userActions | WebSocketActions;
 
 // Типизация thunk'ов в нашем приложении
 export type AppThunk<TReturn = void> = ActionCreator<
@@ -20,7 +21,7 @@ export type AppThunk<TReturn = void> = ActionCreator<
 >;
 
 // Типизация метода dispatch для проверки на валидность отправляемого экшена
-export type AppDispatch = typeof store.dispatch; 
+export type AppDispatch = typeof store.dispatch;
 
 //      ADDITIONAL TYPES      //
 
