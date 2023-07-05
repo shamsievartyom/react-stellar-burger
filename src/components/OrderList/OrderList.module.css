@@ -1,5 +1,41 @@
-.section{
+.section {
     display: flex;
     flex-direction: column;
     max-width: 600px;
+    width: 100%;
+}
+
+.list {
+    display: flex;
+    flex-direction: column;
+    max-height: calc(100vh - 252px);
+    overflow: auto;
+    list-style: none;
+    margin-bottom: 0;
+    padding: 0 8px;
+    gap: 16px
+}
+
+.list::-webkit-scrollbar {
+    width: 8px;
+}
+
+.article__container::-moz-scrollbar {
+    width: 8px;
+}
+
+.list::-webkit-scrollbar-track {
+    background-color: #2F2F37;
+}
+
+.list::-moz-scrollbar-track {
+    background-color: #2F2F37;
+}
+
+.list::-webkit-scrollbar-thumb {
+    background-color: #8585AD;
+}
+
+.list::-moz-scrollbar-thumb {
+    background-color: #8585AD;
 }

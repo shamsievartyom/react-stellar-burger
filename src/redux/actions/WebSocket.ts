@@ -1,3 +1,5 @@
+import { TWSState, Torder } from "../reducers/WebSocket";
+
 export const WS_CONNECTION_START: 'WS_CONNECTION_START' = 'WS_CONNECTION_START';
 export const WS_CONNECTION_SUCCESS: 'WS_CONNECTION_SUCCESS' = 'WS_CONNECTION_SUCCESS';
 export const WS_CONNECTION_ERROR: 'WS_CONNECTION_ERROR' = 'WS_CONNECTION_ERROR';
@@ -26,10 +28,16 @@ export interface IWSConnectionClosedAction {
 }
 export interface IWSGetMessageAction {
     type: typeof WS_GET_MESSAGE;
-    payload: {}
+    payload: {
+        success: boolean,
+        orders: Torder[]
+        total: number,
+        totalToday: number,
+      };
 }
 export interface IWSSendMessageAction {
     type: typeof WS_SEND_MESSAGE;
     payload: {};
 }
+
 export type WebSocketActions = IWSConnectionStartAction | IWSConnectionSuccessAction | IWSConnectionErrorAction | IWSConnectionClosedAction | IWSGetMessageAction | IWSSendMessageAction

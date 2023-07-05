@@ -13,6 +13,8 @@ import Ingredients from "../../pages/Ingredients/Ingredients";
 import WrongRoute from "../../pages/WrongRoute/WrongRoute";
 import { OnlyAuth, OnlyUnAuth } from "../ProtectedRoute/ProtectedRoute";
 import OrderFeed from "../../pages/OrderFeed/OrderFeed";
+import ProfileOverlay from "../ProfileOverlay/ProfileOverlay";
+import OrderHistory from "../../pages/OrderHistory/OrderHistory";
 
 const App: FC = () => {
 
@@ -34,7 +36,10 @@ const App: FC = () => {
         <Route path='/register' element={<OnlyUnAuth component={<Register />} />} />
         <Route path='/forgot-password' element={<OnlyUnAuth component={<ForgotPassword />} />} />
         <Route path='/reset-password' element={<OnlyUnAuth component={<ResetPassword />} />} />
-        <Route path='/profile' element={<OnlyAuth component={<Profile />} />} />
+        <Route path='/profile' element={<OnlyAuth component={<ProfileOverlay />} />}>
+          <Route path='/profile' element={<Profile />} />
+          <Route path='/profile/orders' element={<OrderHistory />} />
+        </Route>
         <Route path='/order-feed' element={<OrderFeed />} />
         <Route path='*' element={<WrongRoute />} />
       </Route >
