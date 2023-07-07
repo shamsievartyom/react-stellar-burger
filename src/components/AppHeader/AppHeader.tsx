@@ -18,17 +18,17 @@ const AppHeader: FC = () => {
                         </NavLink>
                     </li>
                     <li>
-                        <NavLink to='order-feed' className={`p-5 ${styles.button}`}>
-                            <ListIcon type={url === '/order-feed' ? "primary" : "secondary"} />
-                            <span className={`text text_type_main-default text_color_inactive ${url === '/order-feed' ? styles.button_active : ''}`}>Лента заказов</span>
+                        <NavLink to='feed' className={`p-5 ${styles.button}`}>
+                            <ListIcon type={url === '/feed' ? "primary" : "secondary"} />
+                            <span className={`text text_type_main-default text_color_inactive ${url === '/feed' ? styles.button_active : ''}`}>Лента заказов</span>
                         </NavLink>
                     </li>
                 </ul>
             </nav>
             <Logo />
             <NavLink to="/profile" className={`mt-4 mb-4 p-5 ${styles.button} ${styles.button_type_profile}`}>
-                <ProfileIcon type={url === '/profile' ? "primary" : "secondary"} />
-                <span className={`text text_type_main-default text_color_inactive ${url === '/profile' ? styles.button_active : ''}`}>Личный кабинет</span>
+                <ProfileIcon type={url.includes('/profile') ? "primary" : "secondary"} />
+                <span className={`text text_type_main-default text_color_inactive ${url.includes('/profile') ? styles.button_active : ''}`}>Личный кабинет</span>
             </NavLink>
         </header>
     )

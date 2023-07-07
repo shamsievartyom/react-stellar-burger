@@ -15,6 +15,7 @@ import { OnlyAuth, OnlyUnAuth } from "../ProtectedRoute/ProtectedRoute";
 import OrderFeed from "../../pages/OrderFeed/OrderFeed";
 import ProfileOverlay from "../ProfileOverlay/ProfileOverlay";
 import OrderHistory from "../../pages/OrderHistory/OrderHistory";
+import OrderFeedItem from "../../pages/OrderFeedItem/OrderFeedItem";
 
 const App: FC = () => {
 
@@ -40,7 +41,9 @@ const App: FC = () => {
           <Route path='/profile' element={<Profile />} />
           <Route path='/profile/orders' element={<OrderHistory />} />
         </Route>
-        <Route path='/order-feed' element={<OrderFeed />} />
+        <Route path='/profile/orders/:id' element={<OrderFeedItem />} />
+        <Route path='/feed' element={<OrderFeed />} />
+        <Route path='/feed/:id' element={<OrderFeedItem />} />
         <Route path='*' element={<WrongRoute />} />
       </Route >
     </Routes >

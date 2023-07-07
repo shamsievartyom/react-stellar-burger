@@ -1,5 +1,5 @@
 import React, { FC } from 'react'
-import { NavLink, Outlet } from 'react-router-dom'
+import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import styles from './ProfileOverlay.module.css'
 import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/thunks/auth'
@@ -8,18 +8,20 @@ const ProfileOverlay: FC = () => {
 
     const dispatch = useDispatch()
 
+    const location = useLocation()
+
     const handleLogout = () => {
         dispatch(logout())
     }
 
     return (
         <main className={styles.container}>
-            <div className={`mr-15 ${styles.left_menu__container}`}>
+            <div className={styles.left_menu__container}>
                 <nav className={styles.nav}>
                     <ul className={styles.navigation__container}>
                         <li className={styles.navigation__list_element}>
                             <NavLink to="/profile" className={({ isActive }) =>
-                                isActive ? `text text_type_main-medium ${styles.navigation__button} ${styles.navigation__button_active}`
+                                location.pathname === '/profile' ? `text text_type_main-medium ${styles.navigation__button} ${styles.navigation__button_active}`
                                     : `text text_type_main-medium ${styles.navigation__button}`}>Профиль</NavLink>
                         </li>
                         <li className={styles.navigation__list_element}>

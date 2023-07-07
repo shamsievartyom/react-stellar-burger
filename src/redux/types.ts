@@ -7,13 +7,14 @@ import { IIngedientDetailsActions } from './actions/IngredientDetails'
 import { TOrderDetailsActions } from './actions/OrderDetails'
 import { userActions } from './actions/user'
 import { WebSocketActions } from './actions/WebSocket';
+import { TOrderItemActions } from './actions/OrderFeedDetails';
 
 //      THUNK TYPES      //
 
 export type RootState = ReturnType<typeof store.getState>;
 
 // Типизация всех экшенов приложения
-export type TApplicationActions = TBurgerConstructorActions | TBurgerIngredientsActions | IIngedientDetailsActions | TOrderDetailsActions | userActions | WebSocketActions;
+export type TApplicationActions = TBurgerConstructorActions | TBurgerIngredientsActions | IIngedientDetailsActions | TOrderDetailsActions | userActions | WebSocketActions | TOrderItemActions;
 
 // Типизация thunk'ов в нашем приложении
 export type AppThunk<TReturn = void> = ActionCreator<

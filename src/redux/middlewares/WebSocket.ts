@@ -13,7 +13,11 @@ export const socketMiddleware = (wsUrl: string): Middleware => {
 
             if (type === 'WS_CONNECTION_START') {
                 // объект класса WebSocket
-                socket = new WebSocket(wsUrl + payload);
+                if (payload === 'orders') { //OrdersHistory
+                    const accessToken = localStorage.getItem("accessToken") || '';
+                    socket = new WebSocket(wsUrl + payload + `"?token=${accessToken.slice(6)}"`);
+                }
+                else socket = new WebSocket(wsUrl + payload); //OrderFeed
             }
             if (socket) {
 
