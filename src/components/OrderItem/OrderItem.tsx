@@ -2,7 +2,7 @@ import React, { FC } from 'react'
 import styles from './OrderItem.module.css'
 import { Torder } from '../../redux/reducers/WebSocket'
 import { useSelector } from '../../hooks/useSelector'
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useModal } from '../../hooks/useModal'
@@ -50,7 +50,7 @@ const OrderItem: FC<TOrderItemProps> = ({ order }) => {
       <li className={styles.container} onClick={handleOpenOrderFeedDetails}>
         <div className={styles.number_container}>
           <span className={'text text_type_digits-default'}>{'#' + order.number.toString().padStart(6, '0')}</span>
-          <span className="text text_type_main-default text_color_inactive">{order.createdAt}</span>
+          <FormattedDate className='text text_type_main-default text_color_inactive' date={new Date(order.createdAt)} />
         </div>
         <h2 className={`mt-6 text text_type_main-medium ${styles.title}`}>{order.name}</h2>
         <div className={`mt-6 ${styles.bottom_container}`}>

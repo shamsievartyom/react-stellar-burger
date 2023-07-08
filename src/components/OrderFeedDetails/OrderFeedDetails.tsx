@@ -1,7 +1,7 @@
 import React, { FC } from 'react'
 import { Torder } from '../../redux/reducers/WebSocket'
 import { useSelector } from '../../hooks/useSelector'
-import { CurrencyIcon } from '@ya.praktikum/react-developer-burger-ui-components'
+import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
 import { TIngredient } from '../../redux/types'
 import styles from './OrderFeedDetails.module.css'
 
@@ -66,7 +66,7 @@ const OrderFeedDetails: FC = () => {
         })}
       </ul>
       <div className={`mb-10 ${styles.bottom_container}`}>
-        <span className='text text_type_main-default text_color_inactive'>{order?.updatedAt}</span>
+        {order?.updatedAt && <FormattedDate className='text text_type_main-default text_color_inactive' date={new Date(order?.updatedAt)} />}
         <div className={styles.price_container}>
           <span className='text text_type_digits-default'>{totalPrice}</span>
           <CurrencyIcon type="primary" />
