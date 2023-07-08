@@ -3,13 +3,18 @@
     flex-direction: column;
     position: relative;
     align-items: center;
+    cursor: pointer;
+}
+
+.container:hover {
+    background-color: rgb(76 76 255 / 10%);
 }
 
 .counter {
     display: flex;
 }
 
-.title{
+.title {
     min-height: 48px;
     text-align: center;
 }

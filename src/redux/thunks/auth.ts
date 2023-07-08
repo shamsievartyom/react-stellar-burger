@@ -1,9 +1,10 @@
 import { useNavigate } from "react-router-dom";
 import doFetch from "../../functions/doFetch";
 import { SET_AUTH_CHECK, SET_USER } from "../actions/user";
+import { AppDispatch, AppThunk } from "../types";
 
-export const registerThunk = (name, email, password) => {
-    return (dispatch) => {
+export const registerThunk: AppThunk = (name: string, email: string, password: string) => {
+    return (dispatch: AppDispatch) => {
         return fetch("https://norma.nomoreparties.space/api/auth/register", {
             method: "POST",
             headers: {
@@ -28,39 +29,39 @@ export const registerThunk = (name, email, password) => {
     };
 }
 
-const chekResponse = (res) => {
+const chekResponse = (res: Response) => {
     if (res.ok) {
         return res.json();
     }
     return res.json().then((err) => Promise.reject(err));
 };
 
-const refreshToken = () => {
+const refreshToken = (): Promise<{ success: boolean, accessToken?: string, refreshToken?: string }> => {
     return fetch("https://norma.nomoreparties.space/api/auth/token", {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
-            Authorization: localStorage.getItem("accessToken")
+            Authorization: localStorage.getItem("accessToken") || '',
         },
         body: JSON.stringify({
-            token: localStorage.getItem("refreshToken")
+            token: localStorage.getItem("refreshToken") || ''
         })
     }).then(chekResponse);
 };
 
-export const fetchWithRefresh = async (url, options) => {
+export const fetchWithRefresh = async (url: string, options: { method: string, headers: any, body?: string }) => {
     try {
         const res = await fetch(url, options);
         return await chekResponse(res);
     } catch (err) {
-        if (err.message === "jwt expired") {
+        if ((err as Error).message === "jwt expired") {
             const refreshData = await refreshToken();
             if (!refreshData.success) {
                 return Promise.reject(refreshData);
             }
-            localStorage.setItem("accessToken", refreshData.accessToken);
-            localStorage.setItem("refreshToken", refreshData.refreshToken);
-            options.Authorization = refreshData.accessToken;
+            localStorage.setItem("accessToken", refreshData.accessToken || '');
+            localStorage.setItem("refreshToken", refreshData.refreshToken || '');
+            options.headers.Authorization = refreshData.accessToken;
             const res = await fetch(url, options);
             return await chekResponse(res);
         } else {
@@ -69,8 +70,8 @@ export const fetchWithRefresh = async (url, options) => {
     }
 };
 
-export const getUser = () => {
-    return (dispatch) => {
+export const getUser: AppThunk = () => {
+    return (dispatch: AppDispatch) => {
         return fetchWithRefresh("https://norma.nomoreparties.space/api/auth/user", {
             method: "GET",
             headers: {
@@ -81,14 +82,16 @@ export const getUser = () => {
             .then((res) => {
                 dispatch({ type: SET_USER, payload: res.user });
             })
-            .catch((err) => {
-                console.log(err);
-            });
+            .catch(() => {
+                localStorage.removeItem("accessToken");
+                dispatch({ type: SET_USER, payload: null });
+            })
+            .finally(() => dispatch({ type: SET_AUTH_CHECK, payload: true }));
     };
 };
 
-export const login = (email, password) => {
-    return (dispatch) => {
+export const login: AppThunk = (email: string, password: string) => {
+    return (dispatch: AppDispatch) => {
         return fetch("https://norma.nomoreparties.space/api/auth/login", {
             method: "POST",
             headers: {
@@ -112,15 +115,10 @@ export const login = (email, password) => {
     };
 };
 
-export const checkUserAuth = () => {
+export const checkUserAuth: AppThunk = () => {
     return (dispatch) => {
         if (localStorage.getItem("accessToken")) {
             dispatch(getUser())
-                .catch((error) => {
-                    localStorage.removeItem("accessToken");
-                    dispatch({ type: SET_USER, payload: null });
-                })
-                .finally(() => dispatch({ type: SET_AUTH_CHECK, payload: true }));
         } else {
             dispatch({ type: SET_AUTH_CHECK, payload: true });
             dispatch({ type: SET_USER, payload: null });
@@ -128,8 +126,8 @@ export const checkUserAuth = () => {
     };
 };
 
-export const logout = () => {
-    return (dispatch) => {
+export const logout: AppThunk = () => {
+    return (dispatch: AppDispatch) => {
         const token = localStorage.getItem("refreshToken")
         return fetch("https://norma.nomoreparties.space/api/auth/logout", {
             method: "POST",
