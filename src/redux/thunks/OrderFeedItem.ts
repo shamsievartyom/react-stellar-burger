@@ -4,7 +4,7 @@ import { Torder } from "../reducers/WebSocket";
 import { AppDispatch, AppThunk } from "../types"
 
 export const getOrderThunk: AppThunk = (number: string) => async (dispatch: AppDispatch) => {
-    doFetch<{ successs: boolean, orders: Torder[] }>(`orders/${number}`, 'GET')
+    doFetch<{ success: boolean, orders: Torder[] }>(`orders/${number}`, 'GET')
         .then((data) => {
             dispatch({
                 type: UPDATE_ORDER_FEED_DETAILS_DATA,
