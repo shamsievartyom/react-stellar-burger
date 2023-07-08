@@ -4,6 +4,7 @@ import {
   WS_CONNECTION_CLOSED,
   WS_GET_MESSAGE,
   WebSocketActions,
+  WS_CLOSE,
 } from '../actions/WebSocket';
 
 export type Torder = {
@@ -28,7 +29,7 @@ export type TWSState = {
   error?: Event;
 }
 
-const initialState:TWSState = {
+const initialState: TWSState = {
   wsConnected: false,
   messages: null
 };
@@ -63,6 +64,12 @@ export const wsReducer = (state: TWSState = initialState, action: WebSocketActio
         wsConnected: false
       };
 
+    case WS_CLOSE:
+      return {
+        messages: null,
+        error: undefined,
+        wsConnected: false
+      };
     // Опишем обработку экшена с типом WS_GET_MESSAGE
     // Обработка происходит, когда с сервера возвращаются данные
     // В messages передадим данные, которые пришли с сервера

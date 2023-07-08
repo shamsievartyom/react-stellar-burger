@@ -1,7 +1,7 @@
 import React, { FC, useEffect } from 'react'
 import styles from './OrderHistory.module.css'
 import { useDispatch } from 'react-redux'
-import { WS_CONNECTION_CLOSED, WS_CONNECTION_START } from '../../redux/actions/WebSocket'
+import { WS_CLOSE, WS_CONNECTION_CLOSED, WS_CONNECTION_START } from '../../redux/actions/WebSocket'
 import OrderItem from '../../components/OrderItem/OrderItem'
 import { useSelector } from '../../hooks/useSelector'
 
@@ -11,7 +11,7 @@ const OrderHistory: FC = () => {
 
     useEffect(() => {
         dispatch({ type: WS_CONNECTION_START, payload: 'orders' })
-        return () => { dispatch({ type: WS_CONNECTION_CLOSED, payload: undefined }) }
+        return () => { dispatch({ type: WS_CLOSE, payload: undefined }) }
     }, [dispatch])
    
     const orderList = useSelector(store => store.wsReducer.messages?.orders)
