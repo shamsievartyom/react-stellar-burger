@@ -22,10 +22,12 @@ describe('example to-do app', () => {
         cy.location('pathname').should('eq', '/react-stellar-burger');
         cy.log('We logged in')//login
 
-        cy.get('[data-testid="BurgerConstructorList_main__container"]').find('div').first().children().should('not.exist');//bun in constructor not exist
+        const BurgerConstructorListMainContainerSelector = '[data-testid="BurgerConstructorList_main__container"]'
+
+        cy.get(BurgerConstructorListMainContainerSelector).find('div').first().children().should('not.exist');//bun in constructor not exist
         cy.get('[data-testid="BurgerIngredients_article__container"] > :nth-child(1)').find('li').first().trigger('dragstart');//drag
-        cy.get('[data-testid="BurgerConstructorList_main__container"]').trigger('drop')//drop
-        cy.get('[data-testid="BurgerConstructorList_main__container"]').find('div').first().contains('Краторная булка')//bun inside constructor
+        cy.get(BurgerConstructorListMainContainerSelector).trigger('drop')//drop
+        cy.get(BurgerConstructorListMainContainerSelector).find('div').first().contains('Краторная булка')//bun inside constructor
         cy.log('dnd work fine')//drag bun to constructor
 
         cy.get('[data-testid="BurgerConstructor_section"]').find('.button').click()
