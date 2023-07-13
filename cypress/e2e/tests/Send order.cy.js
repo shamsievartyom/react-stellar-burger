@@ -33,4 +33,4 @@ describe('example to-do app', () => {
         cy.get('[data-testid="Modal_window"]').contains('12023')
         cy.log('order works fine')//open order modal
     })
-})  // cy.get('[class^=Modal_window__]').trigger('drop');Modal_window__TpQR8
+})

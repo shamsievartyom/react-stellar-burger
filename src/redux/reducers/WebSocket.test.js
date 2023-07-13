@@ -1,32 +1,20 @@
-import { wsReducer } from './WebSocket'
+import { initialState, wsReducer } from './WebSocket'
 import * as types from './../actions/WebSocket'
 
 describe('WebSocket reducer', () => {
     it('should return the initial state', () => {
-        expect(wsReducer({
-            wsConnected: false,
-            messages: null
-        }, {})).toEqual(
-            {
-                wsConnected: false,
-                messages: null
-            }
+        expect(wsReducer(initialState, {})).toEqual(
+            initialState
         )
     })
     it('should handle WS_CONNECTION_SUCCESS', () => {
-        expect(wsReducer({
-            wsConnected: false,
-            messages: null
-        }, {
+        expect(wsReducer(initialState, {
             type: types.WS_CONNECTION_SUCCESS,
             payload: {
                 isTrusted: true
             }
         })).toEqual(
-            {
-                wsConnected: true,
-                messages: null
-            }
+            { ...initialState, wsConnected: true }
         )
     })
     it('should handle WS_CONNECTION_ERROR', () => {

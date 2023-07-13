@@ -1,48 +1,32 @@
-import reducer from './user'
+import reducer, { initialState } from './user'
 import * as types from './../actions/user'
+
+const obj = {
+    email: 'dasdsad@dasd.dsd',
+    name: 'dasdasd'
+}
 
 describe('user reducer', () => {
     it('should return the initial state', () => {
-        expect(reducer({
-            user: null,
-            isAuthChecked: false
-        }, {})).toEqual(
-            {
-                user: null,
-                isAuthChecked: false
-            }
+        expect(reducer(initialState, {})).toEqual(
+            initialState
         )
     })
     it('should handle SET_AUTH_CHECK', () => {
-        expect(reducer({
-            user: null,
-            isAuthChecked: false
-        }, {
+        expect(reducer(initialState, {
             type: types.SET_AUTH_CHECK,
             payload: true
         })).toEqual(
-            {
-                user: null,
-                isAuthChecked: true
-            }
+            { ...initialState, isAuthChecked: true }
         )
     })
     it('should handle SET_USER', () => {
-        expect(reducer({
-            user: null,
-            isAuthChecked: false
-        }, {
+        expect(reducer(initialState, {
             type: types.SET_USER,
-            payload: {
-                email: 'dasdsad@dasd.dsd',
-                name: 'dasdasd'
-            }
+            payload: obj
         })).toEqual(
             {
-                user: {
-                    email: 'dasdsad@dasd.dsd',
-                    name: 'dasdasd'
-                },
+                user: obj,
                 isAuthChecked: false
             }
         )
