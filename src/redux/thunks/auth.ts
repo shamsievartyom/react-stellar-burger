@@ -2,10 +2,11 @@ import { useNavigate } from "react-router-dom";
 import doFetch from "../../functions/doFetch";
 import { SET_AUTH_CHECK, SET_USER } from "../actions/user";
 import { AppDispatch, AppThunk } from "../types";
+import { BASE_URL } from "../../utils/constants";
 
 export const registerThunk: AppThunk = (name: string, email: string, password: string) => {
     return (dispatch: AppDispatch) => {
-        return fetch("https://norma.nomoreparties.space/api/auth/register", {
+        return fetch(BASE_URL + "/auth/register", {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -37,7 +38,7 @@ const chekResponse = (res: Response) => {
 };
 
 const refreshToken = (): Promise<{ success: boolean, accessToken?: string, refreshToken?: string }> => {
-    return fetch("https://norma.nomoreparties.space/api/auth/token", {
+    return fetch((BASE_URL + "/auth/token"), {
         method: "POST",
         headers: {
             "Content-Type": "application/json",
@@ -72,7 +73,7 @@ export const fetchWithRefresh = async (url: string, options: { method: string, h
 
 export const getUser: AppThunk = () => {
     return (dispatch: AppDispatch) => {
-        return fetchWithRefresh("https://norma.nomoreparties.space/api/auth/user", {
+        return fetchWithRefresh((BASE_URL + "/auth/user"), {
             method: "GET",
             headers: {
                 "Content-Type": "application/json",
@@ -92,7 +93,7 @@ export const getUser: AppThunk = () => {
 
 export const login: AppThunk = (email: string, password: string) => {
     return (dispatch: AppDispatch) => {
-        return fetch("https://norma.nomoreparties.space/api/auth/login", {
+        return fetch((BASE_URL + "/auth/login"), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -129,7 +130,7 @@ export const checkUserAuth: AppThunk = () => {
 export const logout: AppThunk = () => {
     return (dispatch: AppDispatch) => {
         const token = localStorage.getItem("refreshToken")
-        return fetch("https://norma.nomoreparties.space/api/auth/logout", {
+        return fetch((BASE_URL + "/auth/logout"), {
             method: "POST",
             headers: {
                 "Content-Type": "application/json",

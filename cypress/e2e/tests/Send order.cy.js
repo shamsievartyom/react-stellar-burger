@@ -1,3 +1,5 @@
+import BASE_URL from '../../../src/utils/constants'
+
 describe('example to-do app', () => {
 
     const testUser = {
@@ -7,10 +9,10 @@ describe('example to-do app', () => {
 
     beforeEach(() => {
         cy.visit('/login')
-        cy.intercept('GET', 'https://norma.nomoreparties.space/api/ingredients', { fixture: 'ingredients.json' })
-        cy.intercept('POST', 'https://norma.nomoreparties.space/api/auth/login', { fixture: 'login.json' })
-        cy.intercept('GET', 'https://norma.nomoreparties.space/api/auth/user', { fixture: 'user.json' })
-        cy.intercept('POST', 'https://norma.nomoreparties.space/api/orders', { fixture: 'orders.json' })
+        cy.intercept('GET', (BASE_URL + '/ingredients'), { fixture: 'ingredients.json' })
+        cy.intercept('POST', (BASE_URL + '/auth/login'), { fixture: 'login.json' })
+        cy.intercept('GET', (BASE_URL + '/auth/user'), { fixture: 'user.json' })
+        cy.intercept('POST', (BASE_URL + '/orders'), { fixture: 'orders.json' })
     })
 
     it('should send order', () => {

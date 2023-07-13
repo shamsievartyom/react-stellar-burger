@@ -1,6 +1,8 @@
+import { BASE_URL } from "../utils/constants";
+
 const doFetch = <T>(url: string, method: string, body?: {}): Promise<T> => {
     const config = {
-        baseUrl: 'https://norma.nomoreparties.space/api/',
+        baseUrl: (BASE_URL + '/'),
         headers: {
             'Content-Type': 'application/json'
         }

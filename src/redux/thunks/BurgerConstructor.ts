@@ -1,4 +1,5 @@
 import doFetch from "../../functions/doFetch";
+import { BASE_URL } from "../../utils/constants";
 import { ADD_DATA_TO_ORDER_DETAILS, TOrderDetails } from "../actions/OrderDetails";
 import { TBurgerConstructor } from "../reducers/BurgerConstructor";
 import { AppDispatch, AppThunk } from "../types"
@@ -15,7 +16,7 @@ export const sendOrderThunk: AppThunk = (constructorIngredients: TBurgerConstruc
         body: JSON.stringify({ ingredients: [constructorIngredients.bun?._id, ...constructorIngredients.ingredients.map((el) => el._id)] })
     }
 
-    fetchWithRefresh('https://norma.nomoreparties.space/api/orders', options)
+    fetchWithRefresh((BASE_URL + '/orders'), options)
         .then((data) => {
             dispatch({
                 type: ADD_DATA_TO_ORDER_DETAILS,
