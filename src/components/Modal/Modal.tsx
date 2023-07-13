@@ -35,7 +35,7 @@ const Modal: FC<TModal> = ({ children, closeModal }) => {
         modalRoot ? (
             ReactDOM.createPortal(
                 <ModalOverlay closeModal={closeModal}>
-                    <section className={styles.window}>
+                    <section className={styles.window} data-testid='Modal_window'>
                         <button onClick={() => { closeModal(); navigate(-1) }} className={styles.exit__button} type="button">
                             <CloseIcon type="primary" />
                         </button>

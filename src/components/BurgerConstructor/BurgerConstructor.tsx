@@ -45,7 +45,7 @@ const BurgerConstructor: FC = () => {
     }
 
     return (
-        <section className={`mt-25 ${styles.section}`}>
+        <section className={`mt-25 ${styles.section}`} data-testid='BurgerConstructor_section'>
             <BurgerConstructorList />
             <div className={`mt-10 ${styles.footer}`}>
                 <span className="text text_type_digits-medium">{totalPrice()}</span>

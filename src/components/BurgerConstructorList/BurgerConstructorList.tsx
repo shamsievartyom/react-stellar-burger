@@ -51,7 +51,7 @@ const BurgerConstructorList: FC = () => {
     }, [])
 
     return (
-        <div className={`${styles.main__container} ${canDrop ? styles.onDrag : ''} ${isDragging ? styles.isDragging : ''}`} ref={dropRef}>
+        <div className={`${styles.main__container} ${canDrop ? styles.onDrag : ''} ${isDragging ? styles.isDragging : ''}`} ref={dropRef} data-testid='BurgerConstructorList_main__container'>
             {bun ? (
                 <ConstructorElement
                     extraClass={`mr-4 ${styles.ingredient__top}`}

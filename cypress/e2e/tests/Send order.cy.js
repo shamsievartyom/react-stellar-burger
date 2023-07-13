@@ -1,4 +1,4 @@
-import BASE_URL from '../../../src/utils/constants'
+import { BASE_URL } from '../../../src/utils/constants'
 
 describe('example to-do app', () => {
 
@@ -19,18 +19,18 @@ describe('example to-do app', () => {
         cy.get('form input').first().type(testUser.login);
         cy.get('form').find('input').eq(1).type(testUser.password);
         cy.get('form').find('button').click()
-        cy.location('pathname').should('eq', '/');
+        cy.location('pathname').should('eq', '/react-stellar-burger');
         cy.log('We logged in')//login
 
-        cy.get('.BurgerConstructorList_main__container__fLNNG').find('div').first().children().should('not.exist');//bun in constructor not exist
-        cy.get('.BurgerIngredients_article__container__oCf6v > :nth-child(1)').find('li').first().trigger('dragstart');//drag
-        cy.get('.BurgerConstructorList_main__container__fLNNG').trigger('drop')//drop
-        cy.get('.BurgerConstructorList_main__container__fLNNG').find('div').first().contains('Краторная булка')//bun inside constructor
+        cy.get('[data-testid="BurgerConstructorList_main__container"]').find('div').first().children().should('not.exist');//bun in constructor not exist
+        cy.get('[data-testid="BurgerIngredients_article__container"] > :nth-child(1)').find('li').first().trigger('dragstart');//drag
+        cy.get('[data-testid="BurgerConstructorList_main__container"]').trigger('drop')//drop
+        cy.get('[data-testid="BurgerConstructorList_main__container"]').find('div').first().contains('Краторная булка')//bun inside constructor
         cy.log('dnd work fine')//drag bun to constructor
 
-        cy.get('.BurgerConstructor_section__lvpR3').find('.button').click()
-        cy.location('pathname').should('eq', '/')
-        cy.get('.Modal_window__TpQR8').contains('12023')
+        cy.get('[data-testid="BurgerConstructor_section"]').find('.button').click()
+        cy.location('pathname').should('eq', '/react-stellar-burger')
+        cy.get('[data-testid="Modal_window"]').contains('12023')
         cy.log('order works fine')//open order modal
     })
-})  
+})  // cy.get('[class^=Modal_window__]').trigger('drop');Modal_window__TpQR8

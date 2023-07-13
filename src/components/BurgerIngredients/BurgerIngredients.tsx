@@ -58,7 +58,7 @@ const BurgerIngredients: FC = () => {
           </Tab>
         </li>
       </ul>
-      <div className={styles.article__container} ref={containerRef} onScroll={handleScroll}>
+      <div className={styles.article__container} ref={containerRef} onScroll={handleScroll} data-testid='BurgerIngredients_article__container'>
         <IngredientsArticle ref={elementRefFirst} title='Булки' type="bun" />
         <IngredientsArticle ref={elementRefSecond} title='Соусы' type="sauce" />
         <IngredientsArticle ref={elementRefThird} title='Начинки' type="main" />
