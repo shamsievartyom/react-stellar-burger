@@ -3,12 +3,12 @@ import styles from './OrderItem.module.css'
 import { Torder } from '../../redux/reducers/WebSocket'
 import { useSelector } from '../../hooks/useSelector'
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
-import { useDispatch } from 'react-redux'
 import { useLocation, useNavigate } from 'react-router-dom'
 import { useModal } from '../../hooks/useModal'
 import { UPDATE_ORDER_FEED_DETAILS_DATA } from '../../redux/actions/OrderFeedDetails'
 import Modal from '../Modal/Modal'
 import OrderFeedDetails from '../OrderFeedDetails/OrderFeedDetails'
+import { useDispatch } from '../../hooks/useDispatch'
 
 type TOrderItemProps = {
   order: Torder

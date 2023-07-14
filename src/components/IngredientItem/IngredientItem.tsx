@@ -6,10 +6,10 @@ import PropTypes, { func, object } from 'prop-types';
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal';
 import { useDrag } from "react-dnd";
-import { useDispatch } from 'react-redux';
 import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../redux/actions/IngredientDetails';
 import { useLocation, useNavigate } from 'react-router-dom';
 import { TIngredient } from '../../redux/types';
+import { useDispatch } from '../../hooks/useDispatch';
 
 type TIngredientItemProps = {
     card: TIngredient,

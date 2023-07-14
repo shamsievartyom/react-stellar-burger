@@ -1,8 +1,8 @@
 import React, { FC } from 'react'
 import { NavLink, Outlet, useLocation } from 'react-router-dom'
 import styles from './ProfileOverlay.module.css'
-import { useDispatch } from 'react-redux'
 import { logout } from '../../redux/thunks/auth'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const ProfileOverlay: FC = () => {
 

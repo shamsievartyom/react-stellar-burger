@@ -2,10 +2,10 @@ import { Button, EditIcon, EmailInput, Input, PasswordInput } from '@ya.praktiku
 import React, { useEffect, useState, FC } from 'react'
 import styles from './Profile.module.css'
 import { NavLink } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { useSelector } from '../../hooks/useSelector'
 import { logout } from '../../redux/thunks/auth'
 import { changeUserInfo } from '../../redux/thunks/Profile'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const Profile: FC = () => {
 

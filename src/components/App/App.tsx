@@ -1,5 +1,4 @@
 import { useEffect, FC } from "react";
-import { useDispatch } from "react-redux";
 import { Route, Routes, useLocation, useNavigate } from 'react-router-dom';
 import { getIngredientsThunk } from "../../redux/thunks/App";
 import HomePage from "../../pages/HomePage/HomePage";
@@ -16,6 +15,7 @@ import OrderFeed from "../../pages/OrderFeed/OrderFeed";
 import ProfileOverlay from "../ProfileOverlay/ProfileOverlay";
 import OrderHistory from "../../pages/OrderHistory/OrderHistory";
 import OrderFeedItem from "../../pages/OrderFeedItem/OrderFeedItem";
+import { useDispatch } from "../../hooks/useDispatch";
 
 const App: FC = () => {
 

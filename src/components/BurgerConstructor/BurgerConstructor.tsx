@@ -5,11 +5,11 @@ import styles from './BurgerConstructor.module.css'
 import OrderDetails from '../OrderDetails/OrderDetails'
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal'
-import { useDispatch } from 'react-redux'
 import { sendOrderThunk } from '../../redux/thunks/BurgerConstructor'
 import { checkUserAuth } from '../../redux/thunks/auth'
 import { useSelector } from '../../hooks/useSelector'
 import { useNavigate } from 'react-router-dom'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const BurgerConstructor: FC = () => {
 

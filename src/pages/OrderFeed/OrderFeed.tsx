@@ -2,8 +2,8 @@ import React, { useEffect } from 'react'
 import OrderList from '../../components/OrderList/OrderList'
 import OrderStats from '../../components/OrderStats/OrderStats'
 import styles from './OrderFeed.module.css'
-import { useDispatch } from 'react-redux'
 import { WS_CLOSE, WS_CONNECTION_CLOSED, WS_CONNECTION_START } from '../../redux/actions/WebSocket'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const OrderFeed = () => {
 
