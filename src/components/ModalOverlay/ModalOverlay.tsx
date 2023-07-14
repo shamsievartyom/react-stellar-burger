@@ -15,7 +15,6 @@ const ModalOverlay: FC<TModalOverlay> = ({ closeModal, children }) => {
         <div className={styles.cover} onClick={(e) => {
             if (e.target === e.currentTarget) {
                 closeModal()
-                navigate(-1)
             }
         }}>
             {children}

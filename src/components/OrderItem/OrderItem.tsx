@@ -4,11 +4,6 @@ import { Torder } from '../../redux/reducers/WebSocket'
 import { useSelector } from '../../hooks/useSelector'
 import { CurrencyIcon, FormattedDate } from '@ya.praktikum/react-developer-burger-ui-components'
 import { useLocation, useNavigate } from 'react-router-dom'
-import { useModal } from '../../hooks/useModal'
-import { UPDATE_ORDER_FEED_DETAILS_DATA } from '../../redux/actions/OrderFeedDetails'
-import Modal from '../Modal/Modal'
-import OrderFeedDetails from '../OrderFeedDetails/OrderFeedDetails'
-import { useDispatch } from '../../hooks/useDispatch'
 
 type TOrderItemProps = {
   order: Torder
@@ -18,13 +13,9 @@ const OrderItem: FC<TOrderItemProps> = ({ order }) => {
 
   const ingredints = useSelector(store => store.BurgerIngredients)
 
-  const dispatch = useDispatch()
-
   const navigate = useNavigate()
 
   const location = useLocation()
-
-  const { isModalOpen, openModal, closeModal } = useModal();
 
   const orderSmallArray = order.ingredients.slice(0, 6);
 
@@ -37,48 +28,35 @@ const OrderItem: FC<TOrderItemProps> = ({ order }) => {
   }
 
   function handleOpenOrderFeedDetails() {
-    dispatch({
-      type: UPDATE_ORDER_FEED_DETAILS_DATA,
-      payload: order,
-    })
     navigate(`${location.pathname}/${order.number}`, { state: { background: location } })
-    openModal()
   }
 
   return (
-    <>
-      <li className={styles.container} onClick={handleOpenOrderFeedDetails}>
-        <div className={styles.number_container}>
-          <span className={'text text_type_digits-default'}>{'#' + order.number.toString().padStart(6, '0')}</span>
-          <FormattedDate className='text text_type_main-default text_color_inactive' date={new Date(order.createdAt)} />
+    <li className={styles.container} onClick={handleOpenOrderFeedDetails}>
+      <div className={styles.number_container}>
+        <span className={'text text_type_digits-default'}>{'#' + order.number.toString().padStart(6, '0')}</span>
+        <FormattedDate className='text text_type_main-default text_color_inactive' date={new Date(order.createdAt)} />
+      </div>
+      <h2 className={`mt-6 text text_type_main-medium ${styles.title}`}>{order.name}</h2>
+      <div className={`mt-6 ${styles.bottom_container}`}>
+        <div className={styles.ingredients_container}>
+          {orderSmallArray?.map((arrayEl, index) => {
+            return (
+              <div key={index} className={`${(order.ingredients.length > 6 && index === 0) ? `${styles.cover}` : `${styles.cover_z_index_modifier}`}`}>
+                {(order.ingredients.length > 6 && index === 0) &&
+                  <span className={`text text_type_digits-default ${styles.cover_number}`}>{`+${order.ingredients.length - 5}`}</span>
+                }
+                <img className={`${styles.ingredient_image} ${(index > 4) ? `${styles.ingredient_image_modifier}` : ''}`} key={index} src={ingredints.find(el => el._id === arrayEl)?.image_mobile} />
+              </div>
+            )
+          })}
         </div>
-        <h2 className={`mt-6 text text_type_main-medium ${styles.title}`}>{order.name}</h2>
-        <div className={`mt-6 ${styles.bottom_container}`}>
-          <div className={styles.ingredients_container}>
-            {orderSmallArray?.map((arrayEl, index) => {
-              return (
-                <div key={index} className={`${(order.ingredients.length > 6 && index === 0) ? `${styles.cover}` : `${styles.cover_z_index_modifier}`}`}>
-                  {(order.ingredients.length > 6 && index === 0) &&
-                    <span className={`text text_type_digits-default ${styles.cover_number}`}>{`+${order.ingredients.length - 5}`}</span>
-                  }
-                  <img className={`${styles.ingredient_image} ${(index > 4) ? `${styles.ingredient_image_modifier}` : ''}`} key={index} src={ingredints.find(el => el._id === arrayEl)?.image_mobile} />
-                </div>
-              )
-            })}
-          </div>
-          <div className={styles.price_container}>
-            <span className='text text_type_digits-default'>{calculatePrice()}</span>
-            <CurrencyIcon type="primary" />
-          </div>
+        <div className={styles.price_container}>
+          <span className='text text_type_digits-default'>{calculatePrice()}</span>
+          <CurrencyIcon type="primary" />
         </div>
-      </li >
-      {
-        isModalOpen &&
-        <Modal closeModal={closeModal}>
-          <OrderFeedDetails />
-        </Modal>
-      }
-    </>
+      </div>
+    </li >
   )
 }
 
