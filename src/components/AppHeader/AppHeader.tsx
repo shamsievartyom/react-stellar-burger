@@ -13,14 +13,14 @@ const AppHeader: FC = () => {
                 <ul className={`mt-4 mb-4 ${styles.button__list}`}>
                     <li>
                         <NavLink to='/' className={`p-5 ${styles.button}`}>
-                            <BurgerIcon type={url === '/' ? "primary" : "secondary"} />
-                            <span className={`text text_type_main-default text_color_inactive ${url === '/' ? styles.button_active : ''}`}>Конструктор</span>
+                            <BurgerIcon type={url.endsWith("react-stellar-burger") ? "primary" : "secondary"} />
+                            <span className={`text text_type_main-default text_color_inactive ${url.endsWith("react-stellar-burger") ? styles.button_active : ''}`}>Конструктор</span>
                         </NavLink>
                     </li>
                     <li>
                         <NavLink to='feed' className={`p-5 ${styles.button}`}>
-                            <ListIcon type={url === '/feed' ? "primary" : "secondary"} />
-                            <span className={`text text_type_main-default text_color_inactive ${url === '/feed' ? styles.button_active : ''}`}>Лента заказов</span>
+                            <ListIcon type={url.includes('/feed') ? "primary" : "secondary"} />
+                            <span className={`text text_type_main-default text_color_inactive ${url.includes('/feed') ? styles.button_active : ''}`}>Лента заказов</span>
                         </NavLink>
                     </li>
                 </ul>
