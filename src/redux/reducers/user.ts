@@ -5,7 +5,7 @@ type TinitialState = {
     isAuthChecked: boolean,
 }
 
-const initialState = {
+export const initialState = {
     user: null,
     isAuthChecked: false
 };

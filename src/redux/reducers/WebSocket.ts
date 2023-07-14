@@ -29,7 +29,7 @@ export type TWSState = {
   error?: Event;
 }
 
-const initialState: TWSState = {
+export const initialState: TWSState = {
   wsConnected: false,
   messages: null
 };
@@ -83,4 +83,4 @@ export const wsReducer = (state: TWSState = initialState, action: WebSocketActio
     default:
       return state;
   }
-}; 
+};

@@ -7,7 +7,12 @@ export type TBurgerConstructor = {
     ingredients: (TIngredient & { listId: string })[],
 }
 
-const reducer = (state: TBurgerConstructor = { bun: null, ingredients: [] }, action: TBurgerConstructorActions) => {
+export const initialState = {
+    bun: null,
+    ingredients: []
+}
+
+const reducer = (state: TBurgerConstructor = initialState, action: TBurgerConstructorActions) => {
 
     switch (action.type) {
         case CHANGE_INGREDIENT_POSITION: {

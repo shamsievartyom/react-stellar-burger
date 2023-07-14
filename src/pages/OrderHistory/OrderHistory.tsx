@@ -1,9 +1,9 @@
 import React, { FC, useEffect } from 'react'
 import styles from './OrderHistory.module.css'
-import { useDispatch } from 'react-redux'
 import { WS_CLOSE, WS_CONNECTION_CLOSED, WS_CONNECTION_START } from '../../redux/actions/WebSocket'
 import OrderItem from '../../components/OrderItem/OrderItem'
 import { useSelector } from '../../hooks/useSelector'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const OrderHistory: FC = () => {
 

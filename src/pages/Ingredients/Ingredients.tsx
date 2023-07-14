@@ -1,10 +1,10 @@
 import React, { useEffect, FC } from 'react'
 import IngredientDetails from '../../components/IngredientDetails/IngredientDetails'
 import { useParams } from 'react-router-dom';
-import { useDispatch } from 'react-redux';
 import { useSelector } from '../../hooks/useSelector'
 import { UPDATE_INGREDIENT_DETAILS_DATA } from '../../redux/actions/IngredientDetails';
 import styles from './Ingredients.module.css'
+import { useDispatch } from '../../hooks/useDispatch';
 
 const Ingredients: FC = () => {
 

@@ -21,7 +21,6 @@ const Modal: FC<TModal> = ({ children, closeModal }) => {
         function closeByEscape(evt: KeyboardEvent) {
             if (evt.key === 'Escape') {
                 closeModal();
-                navigate(-1)
             }
         }
         document.addEventListener('keydown', closeByEscape);
@@ -35,8 +34,8 @@ const Modal: FC<TModal> = ({ children, closeModal }) => {
         modalRoot ? (
             ReactDOM.createPortal(
                 <ModalOverlay closeModal={closeModal}>
-                    <section className={styles.window}>
-                        <button onClick={() => { closeModal(); navigate(-1) }} className={styles.exit__button} type="button">
+                    <section className={styles.window} data-testid='Modal_window'>
+                        <button onClick={() => { closeModal() }} className={styles.exit__button} type="button">
                             <CloseIcon type="primary" />
                         </button>
                         {children}

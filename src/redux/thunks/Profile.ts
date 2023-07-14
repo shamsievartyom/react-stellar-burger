@@ -1,11 +1,12 @@
 import doFetch from "../../functions/doFetch";
+import { BASE_URL } from "../../utils/constants";
 import { SET_USER } from "../actions/user";
 import { AppDispatch, AppThunk } from "../types";
 import { fetchWithRefresh } from "./auth";
 
 export const changeUserInfo: AppThunk = (name: string, email: string, password: string) => {
     return (dispatch: AppDispatch) => {
-        return fetchWithRefresh("https://norma.nomoreparties.space/api/auth/user", {
+        return fetchWithRefresh((BASE_URL + "/auth/user"), {
             method: "PATCH",
             headers: {
                 "Content-Type": "application/json",

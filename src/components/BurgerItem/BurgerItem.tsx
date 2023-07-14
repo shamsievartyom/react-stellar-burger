@@ -4,10 +4,10 @@ import type { Identifier, XYCoord } from 'dnd-core'
 import PropTypes from 'prop-types';
 import styles from './BurgerItem.module.css'
 import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burger-ui-components';
-import { useDispatch } from 'react-redux';
 import { DELETE_CARD_FROM_CONSTRUCTOR } from '../../redux/actions/BurgerConstructor';
 import { DECREASE_COUNT_OF_INGREDIENT } from '../../redux/actions/BurgerIngredients';
 import { TIngredient, TIngredientType } from '../../redux/types';
+import { useDispatch } from '../../hooks/useDispatch';
 
 type TBurgerItemProps = {
     card: (TIngredient & { listId: string }),

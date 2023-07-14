@@ -5,10 +5,11 @@ import styles from './BurgerConstructor.module.css'
 import OrderDetails from '../OrderDetails/OrderDetails'
 import { useModal } from '../../hooks/useModal'
 import Modal from '../Modal/Modal'
-import { useDispatch } from 'react-redux'
 import { sendOrderThunk } from '../../redux/thunks/BurgerConstructor'
 import { checkUserAuth } from '../../redux/thunks/auth'
 import { useSelector } from '../../hooks/useSelector'
+import { useNavigate } from 'react-router-dom'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const BurgerConstructor: FC = () => {
 
@@ -17,6 +18,7 @@ const BurgerConstructor: FC = () => {
     const constructorIngredients = useSelector((store) => store.BurgerConstructor)
     const user = useSelector((store) => store.user.user)
     const dispatch = useDispatch()
+    const navigate = useNavigate()
 
     useEffect(() => {
         dispatch(checkUserAuth())//check auth and disable order if not
@@ -37,15 +39,18 @@ const BurgerConstructor: FC = () => {
         if (constructorIngredients.bun && user) {
             dispatch(sendOrderThunk(constructorIngredients, openModal));
         }
+        else if (constructorIngredients.bun) {
+            navigate('/login')
+        }
     }
 
     return (
-        <section className={`mt-25 ${styles.section}`}>
+        <section className={`mt-25 ${styles.section}`} data-testid='BurgerConstructor_section'>
             <BurgerConstructorList />
             <div className={`mt-10 ${styles.footer}`}>
                 <span className="text text_type_digits-medium">{totalPrice()}</span>
                 <CurrencyIcon type='primary' />
-                <Button extraClass={(constructorIngredients.bun && user) ? 'ml-4 mr-4' : `ml-4 mr-4 ${styles.button_disabled}`} type='primary' htmlType='button' onClick={handleOrderButton}>Оформить заказ</Button>
+                <Button extraClass={(constructorIngredients.bun) ? 'ml-4 mr-4' : `ml-4 mr-4 ${styles.button_disabled}`} type='primary' htmlType='button' onClick={handleOrderButton}>Оформить заказ</Button>
                 {isModalOpen &&
                     <Modal closeModal={closeModal}>
                         <OrderDetails />

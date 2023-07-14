@@ -3,9 +3,9 @@ import styles from './OrderFeedItem.module.css'
 import OrderFeedDetails from '../../components/OrderFeedDetails/OrderFeedDetails'
 import { useSelector } from '../../hooks/useSelector'
 import { useParams } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { UPDATE_ORDER_FEED_DETAILS_DATA } from '../../redux/actions/OrderFeedDetails'
 import { getOrderThunk } from '../../redux/thunks/OrderFeedItem'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const OrderFeedItem = () => {
 

@@ -1,9 +1,9 @@
 import { Navigate, useLocation, useNavigate } from "react-router-dom";
-import { useDispatch } from "react-redux";
 import React, { useEffect, FC } from "react";
 import { SET_AUTH_CHECK } from "../../redux/actions/user";
 import { checkUserAuth } from "../../redux/thunks/auth";
 import { useSelector } from '../../hooks/useSelector'
+import { useDispatch } from "../../hooks/useDispatch";
 
 type ProtectedRouteProps = {
     onlyUnAuth: boolean,

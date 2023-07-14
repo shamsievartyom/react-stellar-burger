@@ -3,12 +3,12 @@ import { ConstructorElement, DragIcon } from '@ya.praktikum/react-developer-burg
 import styles from './BurgerConstructorList.module.css'
 import { useDrag, useDrop } from "react-dnd";
 import { v4 as uuidv4 } from "uuid";
-import { useDispatch } from 'react-redux';
 import { ADD_CARD_TO_CONSTRUCTOR, CHANGE_INGREDIENT_POSITION } from '../../redux/actions/BurgerConstructor'
 import BurgerItem from '../BurgerItem/BurgerItem';
 import { DECREASE_COUNT_OF_INGREDIENT, INCREASE_COUNT_OF_INGREDIENT } from '../../redux/actions/BurgerIngredients';
 import { TIngredient } from '../../redux/types';
 import { useSelector } from '../../hooks/useSelector'
+import { useDispatch } from '../../hooks/useDispatch';
 
 const BurgerConstructorList: FC = () => {
 
@@ -51,7 +51,7 @@ const BurgerConstructorList: FC = () => {
     }, [])
 
     return (
-        <div className={`${styles.main__container} ${canDrop ? styles.onDrag : ''} ${isDragging ? styles.isDragging : ''}`} ref={dropRef}>
+        <div className={`${styles.main__container} ${canDrop ? styles.onDrag : ''} ${isDragging ? styles.isDragging : ''}`} ref={dropRef} data-testid='BurgerConstructorList_main__container'>
             {bun ? (
                 <ConstructorElement
                     extraClass={`mr-4 ${styles.ingredient__top}`}

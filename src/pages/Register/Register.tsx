@@ -4,7 +4,7 @@ import { Link, useNavigate } from 'react-router-dom'
 import styles from './Register.module.css'
 import doFetch from '../../functions/doFetch'
 import { registerThunk } from '../../redux/thunks/auth'
-import { useDispatch } from 'react-redux'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const Register: FC = () => {
 

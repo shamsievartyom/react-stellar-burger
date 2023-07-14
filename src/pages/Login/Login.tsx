@@ -2,8 +2,8 @@ import React, { useState, FC } from 'react'
 import styles from './Login.module.css'
 import { Button, EmailInput, PasswordInput } from '@ya.praktikum/react-developer-burger-ui-components'
 import { Link } from 'react-router-dom'
-import { useDispatch } from 'react-redux'
 import { login } from '../../redux/thunks/auth'
+import { useDispatch } from '../../hooks/useDispatch'
 
 const Login: FC = () => {
 

@@ -1,7 +1,9 @@
 import { DECREASE_COUNT_OF_INGREDIENT, INCREASE_COUNT_OF_INGREDIENT, TBurgerIngredientsActions, UPDATE_CARDS } from "../actions/BurgerIngredients";
 import { TIngredient } from "../types";
 
-const reducer = (state: TIngredient[] = [], action: TBurgerIngredientsActions) => {
+export const initialState: TIngredient[] = []
+
+const reducer = (state: TIngredient[] = initialState, action: TBurgerIngredientsActions) => {
     switch (action.type) {
         case UPDATE_CARDS: {
             return action.payload.data.map((el) => {
